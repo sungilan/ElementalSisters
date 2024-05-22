@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
+  m_Name: "\uC0B0\uC18C"
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6343137866458537741, guid: 6b43267d6eab44a48bb6d5343d4714f2, type: 3}
+  attackProjectile: {fileID: 0}
+  uiname: "\uC0B0\uC18C"
+  cost: 0
+  type1: {fileID: 11400000, guid: 33223db9cedb8c045990cb7a3b0144a3, type: 2}
+  type2: {fileID: 11400000, guid: 3c4644fba6daec0469d795ae15fcc92e, type: 2}
+  health: 300
+  damage: 10
+  attackRange: 2
+  cardMaterial: {fileID: 2100000, guid: 2c990491b1be79146836dc60972d329a, type: 2}
