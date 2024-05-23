@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\uD5EC\uB968"
   m_EditorClassIdentifier: 
   prefab: {fileID: 280733702233756248, guid: ab5385528dccda84aa3c4ae75cccfb56, type: 3}
-  attackProjectile: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9,
+  attackProjectile: {fileID: 1238513822959078556, guid: 11e002f0c9b353a499ee5afa8d177cbe,
     type: 3}
   uiname: "\uD5EC\uB968"
   cost: 0
@@ -23,3 +23,6 @@ MonoBehaviour:
   damage: 30
   attackRange: 20
   cardMaterial: {fileID: 2100000, guid: fa7ae15a2918fc5429d1f32d5078ad83, type: 2}
+  attackEffectPrefab: {fileID: 3797749060670306938, guid: 920ba01bdc0ca4242bcd62b00e9ee988,
+    type: 3}
+  attackEffectDuration: 0.2

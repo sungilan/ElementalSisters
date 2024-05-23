@@ -518,8 +518,42 @@ public class ChampionController : MonoBehaviour
         navMeshAgent.isStopped = true;
 
         championAnimation.DoAttack(true); //공격 애니메이션 실행
+        StartCoroutine(AttackEffect());
 
-       
+    }
+
+    IEnumerator AttackEffect()
+    {
+        yield return new WaitForSeconds(1);
+        // 공격 이펙트 프리팹을 생성한 후 일정 시간 후에 파괴합니다.
+        if (champion.attackEffectPrefab != null && projectileStart != null)
+        {
+            // champion 또는 projectileStart가 null인지 확인합니다.
+            if (champion == null || projectileStart == null)
+            {
+                Debug.Log("Champion or projectileStart is null.");
+                yield break; // 함수를 종료합니다.
+            }
+
+            // target이 null이거나 champion.attackEffectPrefab가 null인지 확인합니다.
+            if (target == null || champion.attackEffectPrefab == null)
+            {
+                Debug.Log("Target or attackEffectPrefab is null.");
+                yield break; // 함수를 종료합니다.
+            }
+            // 발사 지점에서 목표까지의 방향을 계산합니다.
+            Vector3 direction = target.transform.position - projectileStart.transform.position;
+            direction.Normalize(); // 방향 벡터를 단위 벡터로 정규화합니다.
+
+            // 공격 이펙트 프리팹을 생성합니다.
+            GameObject attackEffect = Instantiate(champion.attackEffectPrefab, projectileStart.transform.position, Quaternion.identity);
+
+            // 공격 이펙트의 방향을 정규화된 방향으로 설정합니다.
+            attackEffect.transform.rotation = Quaternion.LookRotation(direction);
+
+            // 일정 시간 후에 공격 이펙트를 파괴합니다.
+            Destroy(attackEffect, champion.attackEffectDuration);
+        }
     }
 
     /// <summary>

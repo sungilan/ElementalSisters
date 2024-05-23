@@ -36,6 +36,10 @@ public class Champion : ScriptableObject
     public float attackRange = 1;
 
     public Material cardMaterial;
+
+    public GameObject attackEffectPrefab;
+
+    public float attackEffectDuration;
 }
 
 
