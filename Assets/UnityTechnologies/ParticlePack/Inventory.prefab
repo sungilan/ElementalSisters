@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8611719525343754615}
   - component: {fileID: 7240445632309520647}
   m_Layer: 0
-  m_Name: structures lp 6 (3)
+  m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

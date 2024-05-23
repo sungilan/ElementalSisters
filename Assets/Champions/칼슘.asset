@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
-  m_Name: "\uB124\uC628"
+  m_Name: "\uCE7C\uC298"
   m_EditorClassIdentifier: 
   prefab: {fileID: 6525506141892639135, guid: c2323dfe59106b94a941a65727d2f331, type: 3}
-  attackProjectile: {fileID: 0}
-  uiname: "\uB124\uC628"
+  attackProjectile: {fileID: 4955352080285901604, guid: 4c040d020678d7d409f417ad17dbd929,
+    type: 3}
+  uiname: "\uCE7C\uC298"
   cost: 0
   type1: {fileID: 11400000, guid: 33223db9cedb8c045990cb7a3b0144a3, type: 2}
   type2: {fileID: 11400000, guid: 200e54a10084f3941a1f2a3354741fb1, type: 2}
   health: 300
   damage: 10
   attackRange: 2
-  cardMaterial: {fileID: 2100000, guid: 521834cece7eb864483d8a4c965f920e, type: 2}
+  cardMaterial: {fileID: 2100000, guid: 4343ae49753592a4ebd94cb3fcd8d3d8, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\uC544\uB974\uACE4"
   m_EditorClassIdentifier: 
   prefab: {fileID: 4020843490293962151, guid: 265ffb42e88953844becf0498f459bc8, type: 3}
-  attackProjectile: {fileID: 504887762509234602, guid: e94f8a8182f6ca34bbea07f54c94b04c,
+  attackProjectile: {fileID: 3345408961716424949, guid: 877f68fa794a76f4f8cd67e6bc76c353,
     type: 3}
   uiname: "\uC544\uB974\uACE4"
   cost: 0
