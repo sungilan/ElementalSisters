@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
   m_Name: "\uC218\uC18C"
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3711370950087970114, guid: 2a0d615f57fcfb74d936eb67f487fa14, type: 3}
+  prefab: {fileID: 7485496276800823821, guid: 2a0d615f57fcfb74d936eb67f487fa14, type: 3}
   attackProjectile: {fileID: 3347022186734227630, guid: 47840dfac8ea9f84d838cd88e4d82929,
     type: 3}
   uiname: "\uC218\uC18C"
@@ -23,3 +23,6 @@ MonoBehaviour:
   damage: 20
   attackRange: 15
   cardMaterial: {fileID: 2100000, guid: 88d2035e71610f34d9874bf367797256, type: 2}
+  attackEffectPrefab: {fileID: 3797749060670306938, guid: 920ba01bdc0ca4242bcd62b00e9ee988,
+    type: 3}
+  attackEffectDuration: 1

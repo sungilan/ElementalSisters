@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: "\uC778"
   m_EditorClassIdentifier: 
   prefab: {fileID: 8886501786760713897, guid: 1c178f69c1ce7f24c81b76fbcc0de642, type: 3}
-  attackProjectile: {fileID: 1597069992993035993, guid: 85891e03d6c87514a98a053eaf190895,
-    type: 3}
+  attackProjectile: {fileID: 0}
   uiname: "\uC778"
   cost: 0
   type1: {fileID: 11400000, guid: 7f6e8df42876b24448eb70be660c3fac, type: 2}
@@ -23,3 +22,6 @@ MonoBehaviour:
   damage: 20
   attackRange: 10
   cardMaterial: {fileID: 2100000, guid: 7bba6ec9dfd44154e9795c26dda094df, type: 2}
+  attackEffectPrefab: {fileID: 1634767862067424, guid: 007c57e2df8e9b144b99f471b84f3d56,
+    type: 3}
+  attackEffectDuration: 1

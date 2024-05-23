@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
   m_Name: "\uB124\uC628"
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6525506141892639135, guid: c2323dfe59106b94a941a65727d2f331, type: 3}
+  prefab: {fileID: 919132149155446097, guid: 5270c3718f33a1c46bc7226b290cc79f, type: 3}
   attackProjectile: {fileID: 0}
   uiname: "\uB124\uC628"
   cost: 0
-  type1: {fileID: 11400000, guid: 33223db9cedb8c045990cb7a3b0144a3, type: 2}
-  type2: {fileID: 11400000, guid: 200e54a10084f3941a1f2a3354741fb1, type: 2}
+  type1: {fileID: 11400000, guid: 7f6e8df42876b24448eb70be660c3fac, type: 2}
+  type2: {fileID: 11400000, guid: 3c4644fba6daec0469d795ae15fcc92e, type: 2}
   health: 300
-  damage: 10
-  attackRange: 2
-  cardMaterial: {fileID: 2100000, guid: 521834cece7eb864483d8a4c965f920e, type: 2}
+  damage: 30
+  attackRange: 20
+  cardMaterial: {fileID: 2100000, guid: d9ad1ee212e9d9f4090ee20598637074, type: 2}
+  attackEffectPrefab: {fileID: 6808358148016866922, guid: ee0274918566e98449cb697212c39d8f,
+    type: 3}
+  attackEffectDuration: 1

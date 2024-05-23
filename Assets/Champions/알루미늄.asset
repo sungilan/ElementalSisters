@@ -23,3 +23,6 @@ MonoBehaviour:
   damage: 20
   attackRange: 10
   cardMaterial: {fileID: 2100000, guid: 0340eb8e66e20f74e9b27f3a20f0bbd9, type: 2}
+  attackEffectPrefab: {fileID: 3797749060670306938, guid: 920ba01bdc0ca4242bcd62b00e9ee988,
+    type: 3}
+  attackEffectDuration: 2
