@@ -52,10 +52,9 @@ public class ChampionShop : MonoBehaviour
         {
             // 무작위 챔피언 가져오기
             Champion champion = GetRandomChampionInfo();
-            Debug.Log("챔피언 " + (i + 1) + ": " + champion);
+           
             // 챔피언을 배열에 저장
             availableChampionArray[i] = champion;
-            Debug.Log("할당된 챔피언 " + (i + 1) + ": " + availableChampionArray[i]);
 
             // UI에 챔피언 로드
             uIController.LoadShopItem(champion, i);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,16 +16,20 @@ public class UIController : MonoBehaviour
 
     public GameObject[] championsFrameArray;
     public GameObject[] bonusPanels;
-
+    public GameObject uiPanel;
 
     public TextMeshProUGUI timerText;
-    public Text championCountText;
+    public TextMeshProUGUI championCountText;
     public TextMeshProUGUI goldText;
-    public Text hpText;
+    public TextMeshProUGUI hpText;
     public TextMeshProUGUI roundText;
     public TextMeshProUGUI saleText;
+    [SerializeField] private Image Hpimage;
+    [SerializeField] private Image BackHpimage;
+    public bool backHpHit = false;
 
     public GameObject shop;
+    public GameObject gameOverPanel;
     public GameObject restartButton;
     //public GameObject placementText;
     public GameObject gold;
@@ -34,6 +39,24 @@ public class UIController : MonoBehaviour
     public GameObject saleUIPrefab;
 
     public Slider progressBar;
+
+    private void Start()
+    {
+        Hpimage.fillAmount = (float)gamePlayController.currentHP / (float)gamePlayController.maxHP;
+    }
+    private void HandleHp()
+    {
+        Hpimage.fillAmount = Mathf.Lerp(Hpimage.fillAmount, (float)gamePlayController.currentHP / (float)gamePlayController.maxHP, Time.deltaTime * 5f);
+        if (backHpHit)
+        {
+            BackHpimage.fillAmount = Mathf.Lerp(BackHpimage.fillAmount, Hpimage.fillAmount, Time.deltaTime * 10f);
+            if (Hpimage.fillAmount >= BackHpimage.fillAmount - 0.01f)
+            {
+                backHpHit = false;
+                BackHpimage.fillAmount = Hpimage.fillAmount;
+            }
+        }
+    }
 
     public void StartButtonClicked()
     {
@@ -61,7 +84,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void Refresh_Click()
     {
-        championShop.RefreshShop(false);   
+        championShop.RefreshShop(false);
     }
 
     /// <summary>
@@ -85,6 +108,14 @@ public class UIController : MonoBehaviour
     public void Recipe_Click()
     {
         gamePlayController.RecipeButton();
+    }
+
+    /// <summary>
+    /// hides chamipon shop
+    /// </summary>
+    public void HideChampionShop()
+    {
+        shop.gameObject.SetActive(!shop.gameObject.activeSelf);
     }
 
     /// <summary>
@@ -114,10 +145,8 @@ public class UIController : MonoBehaviour
     /// <param name="index"></param>
     public void LoadShopItem(Champion champion, int index)
     {
-        Debug.Log("로드샵 실행");
         //get unit frames
         Transform championUI = championsFrameArray[index].transform.Find("champion");
-        Debug.Log("챔피언UI :" + championUI);
         Transform back = championUI.Find("back");
         Transform front = championUI.Find("front");
         Transform type1 = back.Find("type 1");
@@ -126,8 +155,6 @@ public class UIController : MonoBehaviour
         Transform cost = front.Find("Cost");
         Transform icon1 = back.Find("icon 1");
         Transform icon2 = back.Find("icon 2");
-        
-
 
         //assign texts from champion info to unit frames
         MeshRenderer renderer = championUI.GetComponent<MeshRenderer>();
@@ -149,8 +176,8 @@ public class UIController : MonoBehaviour
     {
         roundText.text = gamePlayController.roundCount.ToString();
         goldText.text = gamePlayController.currentGold.ToString();
-        //championCountText.text = gamePlayController.currentChampionCount.ToString() + " / " + gamePlayController.currentChampionLimit.ToString();
-        //hpText.text = "HP " + gamePlayController.currentHP.ToString();
+        championCountText.text = gamePlayController.currentChampionCount.ToString() + " / " + gamePlayController.currentChampionLimit.ToString();
+        hpText.text = "HP " + gamePlayController.currentHP.ToString();
 
 
         //hide bonusus UI
@@ -206,10 +233,10 @@ public class UIController : MonoBehaviour
     {
         SetTimerTextActive(false);
         shop.SetActive(false);
-        gold.SetActive(false);
-        
-
-        restartButton.SetActive(true);
+        //gold.SetActive(false);
+        uiPanel.SetActive(false);
+        gameOverPanel.SetActive(true);
+        //restartButton.SetActive(true);
     }
 
     /// <summary>
@@ -227,6 +254,7 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
+        HandleHp();
         {
             if (gamePlayController.currentGameStage == GameStage.Preparation) // 현재 스테이지가 준비단계면
             {
