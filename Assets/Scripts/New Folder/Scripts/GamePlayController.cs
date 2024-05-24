@@ -49,6 +49,8 @@ public class GamePlayController : MonoBehaviour
     [HideInInspector]
     public int currentGold = 5; //현재 골드
     [HideInInspector]
+    public int maxHP = 100; //최대 플레이어 체력
+    [HideInInspector]
     public int currentHP = 100; //현재 플레이어 체력
     [HideInInspector]
     public int timerDisplay = 0;
@@ -94,6 +96,8 @@ public class GamePlayController : MonoBehaviour
             timer += Time.deltaTime; //타이머 시작
 
             timerDisplay = (int)timer;
+
+            uIController.UpdateTimerText();
 
             if (timer > CombatStageDuration) //전투 단계 시간을 타이머가 초과하면
             {
@@ -635,7 +639,7 @@ public class GamePlayController : MonoBehaviour
             map.HideIndicators(); //모든 지도표시를 숨김
 
             //hide timer text
-            uIController.SetTimerTextActive(false); //타이머 텍스트를 숨김
+            //uIController.SetTimerTextActive(false); //타이머 텍스트를 숨김
 
 
             if (draggedChampion != null) //드래그챔피언이 null이 아니면
@@ -690,7 +694,7 @@ public class GamePlayController : MonoBehaviour
             currentGameStage = GameStage.Preparation; // 현재스테이지를 준비단계로
 
             //show timer text
-            uIController.SetTimerTextActive(true);
+            //uIController.SetTimerTextActive(true);
 
             //reset champion
             ResetChampions();
@@ -771,7 +775,7 @@ public class GamePlayController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
-
+        uIController.backHpHit = true;
         uIController.UpdateUI();
 
     }
