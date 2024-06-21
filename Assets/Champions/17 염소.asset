@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
+  m_Name: "17 \uC5FC\uC18C"
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2133571801816614487, guid: 399eaf0dc6e7bc542a4b5f336f8d5ff8, type: 3}
+  attackProjectile: {fileID: 6775161279628758629, guid: 7b4274cf2ec577c4692f6957d4a8e861,
+    type: 3}
+  uiname: "\uC5FC\uC18C"
+  cost: 0
+  type1: {fileID: 11400000, guid: 7f6e8df42876b24448eb70be660c3fac, type: 2}
+  type2: {fileID: 11400000, guid: 8efcbb77198f29f4e98e29a8ebc78fa8, type: 2}
+  type3: {fileID: 11400000, guid: 7dca1155b16e17c4594e1a859676f792, type: 2}
+  health: 300
+  damage: 30
+  attackRange: 20
+  cardMaterial: {fileID: 2100000, guid: b3be5dcd823eced4bbbbd2c736589427, type: 2}
+  attackEffectPrefab: {fileID: 5766691976136461342, guid: 43d1d06cf70fcb2488255051aaae40a5,
+    type: 3}
+  attackEffectDuration: 1
