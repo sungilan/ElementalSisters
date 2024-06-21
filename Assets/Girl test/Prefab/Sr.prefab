@@ -467,7 +467,7 @@ Transform:
   m_GameObject: {fileID: 2177157302719539765}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.017589, y: 0.22, z: -0.098659}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.79472256, y: 0.79472256, z: 0.79472256}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -510,6 +510,7 @@ MonoBehaviour:
   currentHealth: 0
   currentDamage: 0
   lvl: 1
+  _isDragged: 0
   isAttacking: 0
   isDead: 0
 --- !u!195 &6776535978410140689

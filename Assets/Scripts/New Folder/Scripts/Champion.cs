@@ -26,11 +26,17 @@ public class Champion : ScriptableObject
     ///챔피언 타입2
     public ChampionType type2;
 
+    ///챔피언 타입3
+    public ChampionType type3;
+
     ///챔피언 캐릭터의 시작 체력 포인트
     public float health = 100;
 
     ///공격 성공시 챔피언 캐릭터의 데미지
     public float damage = 10;
+
+    ///챔피언 캐릭터의 방어력
+    public float defense = 10;
 
     ///챔피언 캐릭터의 공격범위
     public float attackRange = 1;

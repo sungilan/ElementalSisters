@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ChampionBonusType {Damage, Defense, Stun, Heal};
+public enum ChampionBonusType {Damage, DamagePercent, Defense, Stun, Heal};
 public enum BonusTarget {Self, Enemy};
 
 /// <summary>
@@ -44,6 +44,10 @@ public class ChampionBonus
         {
             case ChampionBonusType.Damage : //챔피언 보너스 타입이 Damage일 때
                 bonusDamage += bonusValue; //보너스 수치만큼 bonusDamage에 추가(bonusValue가 곧 데미지양)
+                break;
+            case ChampionBonusType.DamagePercent : //챔피언 보너스 타입이 DamagePercent일 때
+                float baseDamage = champion.currentDamage;
+                bonusDamage += baseDamage * (bonusValue / 100f); //보너스 퍼센트만큼 bonusDamage에 추가
                 break;
             case ChampionBonusType.Stun: //챔피언 보너스 타입이 Stun일 때
                 int rand = Random.Range(0, 100); //0~100의 

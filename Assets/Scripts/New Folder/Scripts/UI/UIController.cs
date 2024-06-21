@@ -15,7 +15,9 @@ public class UIController : MonoBehaviour
     public GamePlayController gamePlayController;
 
     public GameObject[] championsFrameArray;
+    public GameObject[] specialCardArray;
     public GameObject[] bonusPanels;
+    public GameObject[] bonusTooltips;
     public GameObject uiPanel;
 
     public TextMeshProUGUI timerText;
@@ -24,6 +26,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI roundText;
     public TextMeshProUGUI saleText;
+    public TextMeshProUGUI levelText;
     [SerializeField] private Image Hpimage;
     [SerializeField] private Image BackHpimage;
     public bool backHpHit = false;
@@ -151,22 +154,46 @@ public class UIController : MonoBehaviour
         Transform front = championUI.Find("front");
         Transform type1 = back.Find("type 1");
         Transform type2 = back.Find("type 2");
+        Transform type3 = back.Find("type 3");
         Transform name = front.Find("Name");
         Transform cost = front.Find("Cost");
         Transform icon1 = back.Find("icon 1");
         Transform icon2 = back.Find("icon 2");
+        Transform icon3 = back.Find("icon 3");
 
         //assign texts from champion info to unit frames
         MeshRenderer renderer = championUI.GetComponent<MeshRenderer>();
-        if (renderer != null) {
+        if (renderer != null) 
+        {
             renderer.material = champion.cardMaterial;
-            }
+        }
         name.GetComponent<TextMeshProUGUI>().text = champion.uiname;
         cost.GetComponent<TextMeshProUGUI>().text = champion.cost.ToString();
         type1.GetComponent<TextMeshProUGUI>().text = champion.type1.displayName;
         type2.GetComponent<TextMeshProUGUI>().text = champion.type2.displayName;
+        type3.GetComponent<TextMeshProUGUI>().text = champion.type3.displayName;
         icon1.GetComponent<Image>().sprite = champion.type1.icon;
         icon2.GetComponent<Image>().sprite = champion.type2.icon;
+        icon3.GetComponent<Image>().sprite = champion.type3.icon;
+    }
+
+    public void LoadSpecialCard(SpecialCard specialCard, int index)
+    {
+        //get unit frames
+        Transform cardUI = specialCardArray[index].transform.Find("UI Components");
+        Transform cardName1 = cardUI.transform.Find("Name1");
+        Transform cardExplain1 = cardUI.transform.Find("Explain1");
+        Transform cardicon1 = cardUI.transform.Find("icon1");
+        Transform cardName2 = cardUI.transform.Find("Name2");
+        Transform cardExplain2 = cardUI.transform.Find("Explain2");
+        Transform cardicon2 = cardUI.transform.Find("icon2");
+
+        cardName1.GetComponent<TextMeshProUGUI>().text = specialCard.cardName;
+        cardExplain1.GetComponent<TextMeshProUGUI>().text = specialCard.cardExplain;
+        cardicon1.GetComponent<Image>().sprite = specialCard.cardIcon;
+        cardName2.GetComponent<TextMeshProUGUI>().text = specialCard.cardName;
+        cardExplain2.GetComponent<TextMeshProUGUI>().text = specialCard.cardExplain;
+        cardicon2.GetComponent<Image>().sprite = specialCard.cardIcon;
     }
 
     /// <summary>
@@ -177,7 +204,8 @@ public class UIController : MonoBehaviour
         roundText.text = gamePlayController.roundCount.ToString();
         goldText.text = gamePlayController.currentGold.ToString();
         championCountText.text = gamePlayController.currentChampionCount.ToString() + " / " + gamePlayController.currentChampionLimit.ToString();
-        hpText.text = "HP " + gamePlayController.currentHP.ToString();
+        levelText.text = gamePlayController.currentLevel.ToString();
+        //hpText.text = "HP " + gamePlayController.currentHP.ToString();
 
 
         //hide bonusus UI
@@ -205,6 +233,15 @@ public class UIController : MonoBehaviour
                 i++;   
             }
         }
+    }
+    public void ShowBonusTooltips(int number)
+    {
+        bonusTooltips[number].SetActive(true);
+    }
+
+    public void HideBonusTooltips(int number)
+    {
+        bonusTooltips[number].SetActive(false);
     }
 
     /// <summary>

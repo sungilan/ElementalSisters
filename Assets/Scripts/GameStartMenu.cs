@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameStartMenu : MonoBehaviour
 {
@@ -37,7 +40,11 @@ public class GameStartMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+        EditorApplication.isPlaying = false; // This will stop the play mode in the editor
+        #else
+        Application.Quit(); // This will quit the application
+        #endif
     }
 
     public void StartGame()
@@ -56,8 +63,8 @@ public class GameStartMenu : MonoBehaviour
     public void EnableMainMenu()
     {
         mainMenu.SetActive(true);
-        options.SetActive(false);
-        about.SetActive(false);
+        //options.SetActive(false);
+        //about.SetActive(false);
     }
     public void EnableOption()
     {

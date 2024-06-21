@@ -158,7 +158,7 @@ public class Map : MonoBehaviour
 
 
 
-    private GameObject indicatorContainer;
+    [SerializeField]private GameObject indicatorContainer;
 
     /// <summary>
     /// 모든 지도 지표를 생성합니다.
@@ -377,19 +377,20 @@ public class Map : MonoBehaviour
 
         // 생성된 trigger오브젝트에 콜라이더 컴포넌트 추가
         BoxCollider collider = trigger.AddComponent<BoxCollider>();
+        SelectableObject selectableObject = trigger.AddComponent<SelectableObject>();
 
         // 콜라이더 크기 설정
         collider.size = new Vector3(2, 0.5f, 2);
 
         // 트리거로 설정 
-        collider.isTrigger = true;
+        //collider.isTrigger = true;
 
         // 생성된 trigger오브젝트에 TriggerInfo 추가 및 저장
         TriggerInfo trigerInfo = trigger.AddComponent<TriggerInfo>();
         trigerInfo.gridType = type;
         trigerInfo.gridX = x;
 
-        trigger.layer = LayerMask.NameToLayer("Triggers");
+        //trigger.layer = LayerMask.NameToLayer("Triggers");
 
         return trigger;
     }
@@ -405,12 +406,13 @@ public class Map : MonoBehaviour
 
         // 콜라이더 컴포넌트 추가
         SphereCollider collider = trigger.AddComponent<SphereCollider>();
+        SelectableObject selectableObject = trigger.AddComponent<SelectableObject>();
 
         // 콜라이더 크기 설정
         collider.radius = 1.4f;
 
         // 트리거로 설정 
-        collider.isTrigger = true;
+        //collider.isTrigger = true;
 
         // TriggerInfo 추가 및 저장
         TriggerInfo trigerInfo = trigger.AddComponent<TriggerInfo>();
@@ -418,7 +420,7 @@ public class Map : MonoBehaviour
         trigerInfo.gridX = x;
         trigerInfo.gridZ = z;
 
-        trigger.layer = LayerMask.NameToLayer("Triggers");
+        //trigger.layer = LayerMask.NameToLayer("Triggers");
 
         return trigger;
     }

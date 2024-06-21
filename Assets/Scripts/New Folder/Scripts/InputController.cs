@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+
 
 /// <summary>
 /// Controlls player input
@@ -17,6 +19,9 @@ public class InputController : MonoBehaviour
 
     //declare ray starting position var
     private Vector3 rayCastStartPosition;
+
+    public XRRayInteractor leftRayInteractor;
+    public XRRayInteractor rightRayInteractor;
 
     // Start is called before the first frame update
     void Start()
@@ -76,5 +81,28 @@ public class InputController : MonoBehaviour
 
         //store mouse position
         mousePosition = Input.mousePosition;
+        ProcessXRInteraction(leftRayInteractor);
+        ProcessXRInteraction(rightRayInteractor);
+    }
+    private void ProcessXRInteraction(XRRayInteractor rayInteractor)
+    {
+        if (rayInteractor != null)
+        {
+            RaycastHit hit;
+            if (rayInteractor.TryGetCurrent3DRaycastHit(out hit))
+            {
+                triggerInfo = hit.collider.gameObject.GetComponent<TriggerInfo>();
+
+                if (triggerInfo != null)
+                {
+                    GameObject indicator = map.GetIndicatorFromTriggerInfo(triggerInfo);
+                    indicator.GetComponent<MeshRenderer>().material.color = map.indicatorActiveColor;
+                }
+                else
+                {
+                    map.resetIndicators();
+                }
+            }
+        }
     }
 }

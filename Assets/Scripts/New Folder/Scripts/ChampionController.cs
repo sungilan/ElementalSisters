@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 /// <summary>
 /// 단일 챔피언의 움직임과 전투를 제어합니다.
 /// </summary>
@@ -10,7 +11,6 @@ public class ChampionController : MonoBehaviour
 {
     public static int TEAMID_PLAYER = 0; //플레이어의 TEAMID = 0
     public static int TEAMID_AI = 1; //AI의 TEAMID = 1
-
 
     public GameObject levelupEffectPrefab; // 레벨 업 이펙트 프리팹
     public GameObject projectileStart; // 발사체 시작 지점
@@ -40,6 +40,9 @@ public class ChampionController : MonoBehaviour
     [HideInInspector]
     /// 챔피언의 현재 데미지
     public float currentDamage = 0;
+    [HideInInspector]
+    /// 챔피언의 현재 방어력
+    public float currentDefense = 0;
 
     [HideInInspector]
     /// 챔피언의 업그레이드 레벨
@@ -55,7 +58,7 @@ public class ChampionController : MonoBehaviour
 
     private Vector3 gridTargetPosition; // 그리드 목표 위치
 
-    private bool _isDragged = false; // 드래그 중인지 여부
+    [SerializeField] private bool _isDragged = false; // 드래그 중인지 여부
 
     [HideInInspector]
     public bool isAttacking = false; // 공격 중인지 여부
@@ -102,11 +105,13 @@ public class ChampionController : MonoBehaviour
         maxHealth = champion.health;
         currentHealth = champion.health;
         currentDamage = champion.damage;
+        currentDefense = champion.defense;
 
         worldCanvasController.AddHealthBar(this.gameObject); //체력바 추가
 
         effects = new List<Effect>(); //이펙트
     }
+
 
     /// Update is called once per frame
     void Update()
@@ -135,6 +140,7 @@ public class ChampionController : MonoBehaviour
         {
             if (gamePlayController.currentGameStage == GameStage.Preparation) //현재 스테이지가 준비단계이면
             {
+                /*
                 // 거리 계산
                 float distance = Vector3.Distance(gridTargetPosition, this.transform.position);
 
@@ -146,6 +152,8 @@ public class ChampionController : MonoBehaviour
                 {
                     this.transform.position = gridTargetPosition;
                 }
+                */
+                transform.position = gridTargetPosition;
             }
         }
 
@@ -222,6 +230,7 @@ public class ChampionController : MonoBehaviour
         }
         
 
+
     }
 
     /// <summary>
@@ -273,7 +282,7 @@ public class ChampionController : MonoBehaviour
         gridType = _gridType;
         gridPositionX = _gridPositionX;
         gridPositionZ = _gridPositionZ;
-
+   
 
         //set new target when chaning grid position
         gridTargetPosition = GetWorldPosition();
@@ -295,7 +304,6 @@ public class ChampionController : MonoBehaviour
         else if (gridType == Map.GRIDTYPE_HEXA_MAP) //gridType이 GRIDTYPE_HEXA_MAP이면
         {
             worldPosition = map.mapGridPositions[gridPositionX, gridPositionZ];
-
         }
 
         return worldPosition;
@@ -429,7 +437,7 @@ public class ChampionController : MonoBehaviour
                 }
             }
         }
-        else if (teamID == TEAMID_AI) //teamID가 AI일 경우
+        else if (teamID == TEAMID_AI)//teamID가 AI일 경우
         {
 
             for (int x = 0; x < Map.hexMapSizeX; x++)
@@ -561,18 +569,23 @@ public class ChampionController : MonoBehaviour
     /// </summary>
     public void OnAttackAnimationFinished()
     {
+        Debug.Log("OnAttack");
         isAttacking = false;
 
         if (target != null)
         {
          
             //공격 대상 챔피언의 챔피언 컨트롤러와 활성화보너스를 가져옵니다.
-            ChampionController targetChamoion = target.GetComponent<ChampionController>();
+            ChampionController targetChampion = target.GetComponent<ChampionController>();
 
             List<ChampionBonus> activeBonuses = null;
 
             if (teamID == TEAMID_PLAYER) //teamID가 플레이어일 경우
+            {
                 activeBonuses = gamePlayController.activeBonusList; //gamePlayController의 활성화 보너스 리스트를 가져옵니다.
+                Debug.Log("list : " + activeBonuses[0]);
+            }
+                
             else if (teamID == TEAMID_AI) //teamID가 AI일 경우
                 activeBonuses = aIopponent.activeBonusList; //aIopponent의 활성화 보너스 리스트를 가져옵니다.
 
@@ -580,11 +593,15 @@ public class ChampionController : MonoBehaviour
             float d = 0; // 이 챔피언에 적용 중인 총 보너스 효과
             foreach (ChampionBonus b in activeBonuses) //활성화 보너스 리스트를 순회하며 
             {
-                d += b.ApplyOnAttack(this, targetChamoion);
+                d += b.ApplyOnAttack(this, targetChampion);
+                Debug.Log("보너스 효과 : " + d);
             }
-
+            Debug.Log($"방어력 적용 전 가하는 데미지 : {currentDamage}, 적의 방어력 :{targetChampion.currentDefense}");
+            float newdamage = currentDamage - targetChampion.currentDefense;
             //d + currentDamage만큼 대상에게 데미지를 입힙니다.
-            bool isTargetDead = targetChamoion.OnGotHit(d + currentDamage);
+            Debug.Log($"방어력 적용 후 가하는 데미지 : {newdamage}");
+            Debug.Log("보너스 적용된 최종 데미지 : " + (d + newdamage));
+            bool isTargetDead = targetChampion.OnGotHit(d + newdamage);
 
   
             //공격 대상이 죽었을 경우
@@ -623,9 +640,11 @@ public class ChampionController : MonoBehaviour
         {
             damage = b.ApplyOnGotHit(this, damage);
         }
-       
-        currentHealth -= damage; // 받은 데미지만큼 체력을 감소시킵니다.
-
+       Debug.Log($"방어력 적용 전 받는 데미지 : {damage}, 방어력 :{champion.defense}");
+       float newdamage = damage - champion.defense;
+       Debug.Log("방어력 적용 후 데미지 : " + newdamage + ", 체력 : " + currentHealth);
+        currentHealth -= newdamage; // 받은 데미지만큼 체력을 감소시킵니다.
+        Debug.Log("남은 체력 : " + currentHealth);
         
         //death
         if(currentHealth <= 0) //현재 체력이 0보다 작거나 같으면

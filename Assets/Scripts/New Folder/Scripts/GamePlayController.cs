@@ -10,12 +10,12 @@ public enum GameStage { Preparation, Combat, Loss};
 /// </summary>
 public class GamePlayController : MonoBehaviour
 {
-    public Map map;
-    public InputController inputController;
-    public GameData gameData;
-    public UIController uIController;
-    public AIopponent aIopponent;
-    public ChampionShop championShop;
+    [SerializeField]private Map map;
+    [SerializeField]private InputController inputController;
+    [SerializeField]private GameData gameData;
+    [SerializeField]private UIController uIController;
+    [SerializeField]private AIopponent aIopponent;
+    [SerializeField]private ChampionShop championShop;
 
     [HideInInspector]
     public GameObject[] ownChampionInventoryArray;
@@ -25,10 +25,10 @@ public class GamePlayController : MonoBehaviour
     public GameObject[,] gridChampionsArray;
 
     public GameObject starPrefab;
-    public Transform playerPos;
-    public Transform playerPreparationPos1;
-    public Transform playerPreparationPos2;
-    public Transform playerCombatPos;
+    [SerializeField]private Transform playerPos;
+    [SerializeField]private Transform playerPreparationPos1;
+    [SerializeField]private Transform playerPreparationPos2;
+    [SerializeField]private Transform playerCombatPos;
 
     public GameStage currentGameStage;
     public float timer = 0;
@@ -49,6 +49,8 @@ public class GamePlayController : MonoBehaviour
     [HideInInspector]
     public int currentGold = 5; //현재 골드
     [HideInInspector]
+    public int currentLevel = 1;
+    [HideInInspector]
     public int maxHP = 100; //최대 플레이어 체력
     [HideInInspector]
     public int currentHP = 100; //현재 플레이어 체력
@@ -57,6 +59,8 @@ public class GamePlayController : MonoBehaviour
 
     public Dictionary<ChampionType, int> championTypeCount;
     public List<ChampionBonus> activeBonusList;
+
+    public CreateSpecialCard createSpecialCard;
 
     /// Start is called before the first frame update
     void Start()
@@ -448,7 +452,7 @@ public class GamePlayController : MonoBehaviour
     /// </summary>
     /// <param name="triggerinfo"></param>
     /// <returns></returns>
-    private GameObject GetChampionFromTriggerInfo(TriggerInfo triggerinfo)
+    public GameObject GetChampionFromTriggerInfo(TriggerInfo triggerinfo)
     {
         GameObject championGO = null;
 
@@ -576,11 +580,27 @@ public class GamePlayController : MonoBehaviour
                         championTypeCount.Add(c.type2, 1);
                     }
 
+                     // 세 번째 챔피언 종류 카운트 업데이트
+                    if (championTypeCount.ContainsKey(c.type3))
+                    {
+                        int cCount = 0;
+                        championTypeCount.TryGetValue(c.type3, out cCount);
+
+                        cCount++;
+
+                        championTypeCount[c.type3] = cCount;
+                    }
+                    else
+                    {
+                        championTypeCount.Add(c.type3, 1);
+                    }
+
                 }
             }
         }
+
         // 활성 보너스 목록 초기화
-        activeBonusList = new List<ChampionBonus>();
+        //activeBonusList = new List<ChampionBonus>();
 
         // 각 챔피언 종류별로 보너스 계산
         foreach (KeyValuePair<ChampionType, int> m in championTypeCount)
@@ -595,8 +615,15 @@ public class GamePlayController : MonoBehaviour
                 activeBonusList.Add(championBonus);
             }
         }
-
     }
+    public void ApplyChampionBonus(ChampionBonus bonus)
+{
+    if (!activeBonusList.Contains(bonus))
+    {
+        activeBonusList.Add(bonus);
+        Debug.Log("특성 적용");
+    }
+}
 
     /// <summary>
     /// 모든 챔피언의 스탯과 위치를 재설정합니다.
@@ -693,6 +720,8 @@ public class GamePlayController : MonoBehaviour
             //set new game stage
             currentGameStage = GameStage.Preparation; // 현재스테이지를 준비단계로
 
+            createSpecialCard.SetSpecialCard();
+
             //show timer text
             //uIController.SetTimerTextActive(true);
 
@@ -755,6 +784,7 @@ public class GamePlayController : MonoBehaviour
 
         if(currentChampionLimit < 9) //현재 챔피언 제한이 9(최대)보다 적으면
         {
+            currentLevel += 1;
             //챔피언 보유 제한을 늘립니다.
             currentChampionLimit++;
 

@@ -363,6 +363,20 @@ public class AIopponent : MonoBehaviour
                         championTypeCount.Add(c.type2, 1);
                     }
 
+                    if (championTypeCount.ContainsKey(c.type3)) //위와 동일, type2에 대한 처리
+                    {
+                        int cCount = 0;
+                        championTypeCount.TryGetValue(c.type3, out cCount);
+
+                        cCount++;
+
+                        championTypeCount[c.type3] = cCount;
+                    }
+                    else
+                    {
+                        championTypeCount.Add(c.type3, 1);
+                    }
+
                 }
             }
         }
