@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ElementalSisters-main.sln"
+    "dotnet.defaultSolution": "ElementalSisters.sln"
 }
