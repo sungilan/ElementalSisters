@@ -245,8 +245,9 @@ MonoBehaviour:
     bonusValue: 20
     duration: 0
     effectPrefab: {fileID: 0}
-  cardName: "\uBC29\uAD6C"
-  cardExplain: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uACF5\uACA9\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  cardName: 4
+  cardExplain: "\uBAA8\uB4E0 \uC720\uB2DB\uC758 \uACF5\uACA9\uC18D\uB3C4\uAC00 5%
+    \uC99D\uAC00\uD569\uB2C8\uB2E4. "
   cardIcon: {fileID: 21300000, guid: 250a5c4980dfad041b2848b164fd9d3f, type: 3}
 --- !u!114 &2901897245734720002
 MonoBehaviour:
@@ -455,7 +456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBB3C\uBC29\uC6B8"
+  m_text: "\uB808\uC774\uC800"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
@@ -665,7 +666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uBC29\uC5B4\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uACF5\uACA9\uB825\uC774 10 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
@@ -800,7 +801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uBC29\uC5B4\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uACF5\uACA9\uB825\uC774 10 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
@@ -1314,7 +1315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBB3C\uBC29\uC6B8"
+  m_text: "\uB808\uC774\uC800"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,

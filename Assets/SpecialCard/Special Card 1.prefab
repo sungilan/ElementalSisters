@@ -245,8 +245,8 @@ MonoBehaviour:
     bonusValue: 20
     duration: 0
     effectPrefab: {fileID: 0}
-  cardName: "\uBD88\uAF43"
-  cardExplain: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uACF5\uACA9\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  cardName: 1
+  cardExplain: "\uBAA8\uB4E0 \uC720\uB2DB\uC758 \uBC29\uC5B4\uB825\uC774 5% \uC99D\uAC00\uD569\uB2C8\uB2E4."
   cardIcon: {fileID: 21300000, guid: 456ce10e28024d44a9bf5159bb1cafb7, type: 3}
 --- !u!114 &2901897245734720002
 MonoBehaviour:
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBB3C\uBC29\uC6B8"
+  m_text: "\uB208"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4ed2c24a7c24e3419b43faf029ce757, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68eae9a6c9509254dac31ab674522033, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uBC29\uC5B4\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uACF5\uACA9\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uBC29\uC5B4\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  m_text: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uACF5\uACA9\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
@@ -935,7 +935,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4ed2c24a7c24e3419b43faf029ce757, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68eae9a6c9509254dac31ab674522033, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBB3C\uBC29\uC6B8"
+  m_text: "\uB208"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
