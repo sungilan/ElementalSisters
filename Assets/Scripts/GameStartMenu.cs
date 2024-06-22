@@ -63,8 +63,8 @@ public class GameStartMenu : MonoBehaviour
     public void EnableMainMenu()
     {
         mainMenu.SetActive(true);
-        //options.SetActive(false);
-        //about.SetActive(false);
+        options.SetActive(false);
+        about.SetActive(false);
     }
     public void EnableOption()
     {
