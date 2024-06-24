@@ -87,7 +87,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void Refresh_Click()
     {
-        championShop.RefreshShop(false);
+        championShop.RefreshShop(true);
     }
 
     /// <summary>
