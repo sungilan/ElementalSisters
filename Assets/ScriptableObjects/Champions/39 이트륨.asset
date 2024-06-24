@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
   m_Name: "39 \uC774\uD2B8\uB968"
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7519957728464361072, guid: ab93f8d104cbe2b41a112ee69c0d2c77, type: 3}
-  attackProjectile: {fileID: 3289508436278061462, guid: 4aff1b9e2ab06714ba4fd4abbd998400,
+  prefab: {fileID: 620413745185394262, guid: ab93f8d104cbe2b41a112ee69c0d2c77, type: 3}
+  attackProjectile: {fileID: 5085359099955743150, guid: 77b88c2dbfbbe444d94eced3df6354c2,
     type: 3}
   uiname: "\uC774\uD2B8\uB968"
   cost: 0

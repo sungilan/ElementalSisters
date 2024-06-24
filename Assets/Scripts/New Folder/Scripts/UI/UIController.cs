@@ -34,7 +34,6 @@ public class UIController : MonoBehaviour
     public GameObject shop;
     public GameObject gameOverPanel;
     public GameObject restartButton;
-    //public GameObject placementText;
     public GameObject gold;
     public GameObject bonusContainer;
     public GameObject bonusUIPrefab;

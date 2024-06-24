@@ -10,17 +10,15 @@ public class HealthBar : MonoBehaviour
 {
     private GameObject championGO;
     private ChampionController championController;
-    //private Renderer barRenderer; // 체력바 렌더러
-    private Image barImage;
+    [SerializeField] private Image Hpimage;
+    [SerializeField] private Image BackHpimage;
+    private float currentFillAmount;
 
-    private float initialScaleX; // 초기 체력바 너비
 
     /// Start is called before the first frame update
     void Start()
     {
-        //barRenderer = GetComponent<Renderer>(); // 체력바의 렌더러 컴포넌트 가져오기
-        barImage = GetComponent<Image>();
-        initialScaleX = transform.localScale.x; // 초기 체력바 너비 저장
+        currentFillAmount = Hpimage.fillAmount;
     }
 
     /// Update is called once per frame
@@ -30,23 +28,45 @@ public class HealthBar : MonoBehaviour
         {
             this.transform.position = championGO.transform.position + new Vector3(0, 4.5f, 0);
             // 챔피언의 현재 체력과 최대 체력 비율 계산
-            float healthRatio = championController.currentHealth / championController.maxHealth;
+            float targetFillAmount = championController.currentHealth / championController.maxHealth;
 
             // 체력바 너비를 비율에 따라 변경
-            Vector3 newScale = transform.localScale;
-            newScale.x = initialScaleX * healthRatio;
-            transform.localScale = newScale;
+            currentFillAmount = Mathf.Lerp(currentFillAmount, targetFillAmount, 5f * Time.deltaTime);
+            Hpimage.fillAmount = currentFillAmount;
+
+            StartCoroutine(UpdateBackHp());
 
             // 챔피언의 체력에 따라 색상 변경
-            //Color barColor = Color.Lerp(Color.red, Color.green, healthRatio);
-            //barRenderer.material.color = barColor;
-            Color barColor = Color.Lerp(Color.red, Color.green, healthRatio);
-            barImage.color = barColor;
+            Color barColor = Color.Lerp(Color.red, Color.green, currentFillAmount);
+            Hpimage.color = barColor;
+
+            // 챔피언의 체력이 0 이하가 되면 체력바를 파괴
+            if (championController.currentHealth <= 0)
+            {
+                championGO = null;
+                Destroy(this.gameObject);
+            }
         }
-        else
+    }
+    IEnumerator UpdateBackHp()
+    {
+        yield return new WaitForSeconds(0.1f); // 적절한 시간 간격 설정
+
+        float targetBackFillAmount = Hpimage.fillAmount;
+        float initialBackFillAmount = BackHpimage.fillAmount;
+
+        float elapsedTime = 0f;
+        float duration = 1f; // 애니메이션 지속 시간 설정
+
+        while (elapsedTime < duration)
         {
-            Destroy(this.gameObject);
+            elapsedTime += Time.deltaTime;
+            float newBackFillAmount = Mathf.LerpUnclamped(initialBackFillAmount, targetBackFillAmount, elapsedTime / duration);
+            BackHpimage.fillAmount = newBackFillAmount;
+            yield return null;
         }
+
+        BackHpimage.fillAmount = targetBackFillAmount;
     }
 
     /// <summary>

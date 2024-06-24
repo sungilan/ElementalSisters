@@ -36,6 +36,12 @@ public class ChampionController : MonoBehaviour
     [HideInInspector]
     /// 챔피언의 현재 체력
     public float currentHealth = 0;
+    [HideInInspector]
+    /// 챔피언의 최대 마나
+    public float maxMana = 0;
+    [HideInInspector]
+    /// 챔피언의 현재 마나
+    public float currentMana = 0;
 
     [HideInInspector]
     /// 챔피언의 현재 데미지
@@ -71,6 +77,7 @@ public class ChampionController : MonoBehaviour
 
     private bool isStuned = false; // 기절 상태 여부
     private float stunTimer = 0; // 기절 타이머
+    private HealthBar healthBar;
 
     private List<Effect> effects; // 효과 리스트
 
@@ -106,8 +113,12 @@ public class ChampionController : MonoBehaviour
         currentHealth = champion.health;
         currentDamage = champion.damage;
         currentDefense = champion.defense;
+        maxMana = champion.mana;
+        currentMana = champion.mana;
 
         worldCanvasController.AddHealthBar(this.gameObject); //체력바 추가
+        worldCanvasController.AddManaBar(this.gameObject); //체력바 추가
+        healthBar = GetComponentInChildren<HealthBar>();
 
         effects = new List<Effect>(); //이펙트
     }
@@ -253,10 +264,15 @@ public class ChampionController : MonoBehaviour
         //reset stats
         maxHealth = champion.health * lvl;
         currentHealth = champion.health * lvl;
+        maxMana = champion.mana * lvl;
+        currentMana = champion.mana * lvl;
         isDead = false;
         isInCombat = false;
         target = null;
         isAttacking = false;
+
+        worldCanvasController.AddHealthBar(this.gameObject);
+        worldCanvasController.AddManaBar(this.gameObject);
 
         //reset position
         SetWorldPosition();
@@ -554,7 +570,7 @@ public class ChampionController : MonoBehaviour
             direction.Normalize(); // 방향 벡터를 단위 벡터로 정규화합니다.
 
             // 공격 이펙트 프리팹을 생성합니다.
-            GameObject attackEffect = Instantiate(champion.attackEffectPrefab, projectileStart.transform.position, Quaternion.identity);
+            GameObject attackEffect = Instantiate(champion.attackEffectPrefab, projectileStart.transform.position, champion.attackEffectPrefab.transform.rotation);
 
             // 공격 이펙트의 방향을 정규화된 방향으로 설정합니다.
             attackEffect.transform.rotation = Quaternion.LookRotation(direction);

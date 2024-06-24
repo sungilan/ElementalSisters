@@ -38,6 +38,8 @@ public class Champion : ScriptableObject
     ///챔피언 캐릭터의 방어력
     public float defense = 10;
 
+    public float mana = 100;
+
     ///챔피언 캐릭터의 공격범위
     public float attackRange = 1;
 
