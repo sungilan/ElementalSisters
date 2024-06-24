@@ -15,9 +15,9 @@ MonoBehaviour:
   displayName: "1\uC871"
   icon: {fileID: 21300000, guid: 5ef712a040415a34f81d6333412ba005, type: 3}
   championBonus:
-    championCount: 2
+    championCounts: 
     championBonusType: 0
     bonusTarget: 1
-    bonusValue: 2
+    bonusValues: []
     duration: 0
     effectPrefab: {fileID: 0}

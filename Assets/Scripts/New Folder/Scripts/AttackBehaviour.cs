@@ -22,7 +22,7 @@ public class AttackBehaviour : StateMachineBehaviour
     /// OnStateExit는 전환이 끝나고 상태 시스템이 이 상태 평가를 마치면 호출됩니다.
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("attack anim finished");
+        //Debug.Log("attack anim finished");
 
         animator.gameObject.transform.parent.GetComponent<ChampionAnimation>().OnAttackAnimationFinished();
     }

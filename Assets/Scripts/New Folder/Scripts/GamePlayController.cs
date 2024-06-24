@@ -603,25 +603,55 @@ public class GamePlayController : MonoBehaviour
         //activeBonusList = new List<ChampionBonus>();
 
         // 각 챔피언 종류별로 보너스 계산
-        foreach (KeyValuePair<ChampionType, int> m in championTypeCount)
-        {
-            // 챔피언 종류에 해당하는 보너스 가져오기
-            ChampionBonus championBonus = m.Key.championBonus;
+foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
+{
+    ChampionType championType = pair.Key;
+    int championCount = pair.Value;
 
-            // 보너스 획득을 위해 충분한 챔피언 수 확인
-            if (m.Value >= championBonus.championCount)
+    Debug.Log("챔피언 타입: " + championType + ", 챔피언 수: " + championCount);
+
+    // 챔피언 종류에 해당하는 보너스 가져오기
+    ChampionBonus championBonus = championType.championBonus;
+
+    // 보너스 획득을 위해 충분한 챔피언 수 확인
+    for (int i = 0; i < championBonus.championCounts.Count; i++)
+    {
+        Debug.Log("필요한 챔피언 수: " + championBonus.championCounts[i] + ", 현재 챔피언 수: " + championCount);
+
+        if (championCount >= championBonus.championCounts[i])
+        {
+            // 보너스 값 설정
+            float bonusValue = championBonus.bonusValues[i];
+            Debug.Log("적용할 보너스 값: " + bonusValue);
+
+            // 새로운 보너스 객체 생성
+            ChampionBonus activeBonus = new ChampionBonus
             {
-                // 충분한 챔피언 수가 있으면 보너스를 활성 목록에 추가
-                activeBonusList.Add(championBonus);
-            }
+                championCounts = new List<int> { championBonus.championCounts[i] },
+                championBonusType = championBonus.championBonusType,
+                bonusTarget = championBonus.bonusTarget,
+                bonusValues = new List<float> { bonusValue },
+                duration = championBonus.duration,
+                effectPrefab = championBonus.effectPrefab
+            };
+
+            // 충분한 챔피언 수가 있으면 보너스를 활성 목록에 추가
+            activeBonusList.Add(activeBonus);
+            Debug.Log("추가된 보너스 : " + bonusValue);
+
+            // 한 번의 보너스만 추가하도록 설정
+            break;
         }
+    }
+}
+
+
     }
     public void ApplyChampionBonus(ChampionBonus bonus)
 {
     if (!activeBonusList.Contains(bonus))
     {
         activeBonusList.Add(bonus);
-        Debug.Log("특성 적용");
     }
 }
 

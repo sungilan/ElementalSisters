@@ -14,7 +14,7 @@ private void Start()
 }
 protected override void OnHoverEntered(HoverEnterEventArgs args)
 {
-    Debug.Log("닿았다");
+    //Debug.Log("닿았다");
 }
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
@@ -22,7 +22,7 @@ protected override void OnHoverEntered(HoverEnterEventArgs args)
         RaycastHit hit;
         if (rayInteractor.TryGetCurrent3DRaycastHit(out hit))
         {
-            Debug.Log("드래그");
+            //Debug.Log("드래그");
             gamePlayController.StartDrag();
         }
     }
@@ -33,7 +33,7 @@ protected override void OnHoverEntered(HoverEnterEventArgs args)
         RaycastHit hit;
         if (rayInteractor.TryGetCurrent3DRaycastHit(out hit))
         {
-            Debug.Log("드래그 끝");
+            //Debug.Log("드래그 끝");
             gamePlayController.StopDrag();
         }
     }

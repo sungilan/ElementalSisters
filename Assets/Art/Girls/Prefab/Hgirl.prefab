@@ -52,7 +52,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 198739637480246023, guid: 54675b60145799841b436960a9ad3d2a, type: 3}
+  - {fileID: 198739637480246023, guid: 8a35cd7a890b9da4a9b4bc0eea7f0e28, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,7 +149,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4753190572191163092, guid: 54675b60145799841b436960a9ad3d2a, type: 3}
+  - {fileID: 4753190572191163092, guid: 8a35cd7a890b9da4a9b4bc0eea7f0e28, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -519,7 +519,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 198739637480246023, guid: 54675b60145799841b436960a9ad3d2a, type: 3}
+  - {fileID: 198739637480246023, guid: 8a35cd7a890b9da4a9b4bc0eea7f0e28, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -637,7 +637,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 198739637480246023, guid: 54675b60145799841b436960a9ad3d2a, type: 3}
+  - {fileID: 198739637480246023, guid: 8a35cd7a890b9da4a9b4bc0eea7f0e28, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1002,7 +1002,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3574795287542384835, guid: 54675b60145799841b436960a9ad3d2a, type: 3}
+  - {fileID: -3574795287542384835, guid: 8a35cd7a890b9da4a9b4bc0eea7f0e28, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1123,7 +1123,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 198739637480246023, guid: 54675b60145799841b436960a9ad3d2a, type: 3}
+  - {fileID: 198739637480246023, guid: 8a35cd7a890b9da4a9b4bc0eea7f0e28, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1319,6 +1319,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   currentDamage: 0
+  currentDefense: 0
   lvl: 1
   _isDragged: 0
   isAttacking: 0

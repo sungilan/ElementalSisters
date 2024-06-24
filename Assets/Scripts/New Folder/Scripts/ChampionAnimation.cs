@@ -55,7 +55,7 @@ public class ChampionAnimation : MonoBehaviour
 
         championController.OnAttackAnimationFinished();
 
-        Debug.Log("OnAttackAnimationFinished");
+        //Debug.Log("OnAttackAnimationFinished");
 
     }
 

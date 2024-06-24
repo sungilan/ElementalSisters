@@ -519,7 +519,7 @@ public class ChampionController : MonoBehaviour
     /// </summary>
     private void DoAttack()
     {
-        Debug.Log("공격실행");
+        //Debug.Log("공격실행");
         isAttacking = true;
 
         ///공격할 동안 에이전트 비활성화
@@ -569,7 +569,7 @@ public class ChampionController : MonoBehaviour
     /// </summary>
     public void OnAttackAnimationFinished()
     {
-        Debug.Log("OnAttack");
+        //Debug.Log("OnAttack");
         isAttacking = false;
 
         if (target != null)
@@ -583,7 +583,7 @@ public class ChampionController : MonoBehaviour
             if (teamID == TEAMID_PLAYER) //teamID가 플레이어일 경우
             {
                 activeBonuses = gamePlayController.activeBonusList; //gamePlayController의 활성화 보너스 리스트를 가져옵니다.
-                Debug.Log("list : " + activeBonuses[0]);
+                //Debug.Log("list : " + activeBonuses[0]);
             }
                 
             else if (teamID == TEAMID_AI) //teamID가 AI일 경우
@@ -596,10 +596,10 @@ public class ChampionController : MonoBehaviour
                 d += b.ApplyOnAttack(this, targetChampion);
                 Debug.Log("보너스 효과 : " + d);
             }
-            Debug.Log($"방어력 적용 전 가하는 데미지 : {currentDamage}, 적의 방어력 :{targetChampion.currentDefense}");
+            //Debug.Log($"방어력 적용 전 가하는 데미지 : {currentDamage}, 적의 방어력 :{targetChampion.currentDefense}");
             float newdamage = currentDamage - targetChampion.currentDefense;
             //d + currentDamage만큼 대상에게 데미지를 입힙니다.
-            Debug.Log($"방어력 적용 후 가하는 데미지 : {newdamage}");
+            //Debug.Log($"방어력 적용 후 가하는 데미지 : {newdamage}");
             Debug.Log("보너스 적용된 최종 데미지 : " + (d + newdamage));
             bool isTargetDead = targetChampion.OnGotHit(d + newdamage);
 
@@ -640,11 +640,11 @@ public class ChampionController : MonoBehaviour
         {
             damage = b.ApplyOnGotHit(this, damage);
         }
-       Debug.Log($"방어력 적용 전 받는 데미지 : {damage}, 방어력 :{champion.defense}");
+       //Debug.Log($"방어력 적용 전 받는 데미지 : {damage}, 방어력 :{champion.defense}");
        float newdamage = damage - champion.defense;
-       Debug.Log("방어력 적용 후 데미지 : " + newdamage + ", 체력 : " + currentHealth);
+       //Debug.Log("방어력 적용 후 데미지 : " + newdamage + ", 체력 : " + currentHealth);
         currentHealth -= newdamage; // 받은 데미지만큼 체력을 감소시킵니다.
-        Debug.Log("남은 체력 : " + currentHealth);
+        //Debug.Log("남은 체력 : " + currentHealth);
         
         //death
         if(currentHealth <= 0) //현재 체력이 0보다 작거나 같으면

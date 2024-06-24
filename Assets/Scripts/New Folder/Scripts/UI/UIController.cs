@@ -226,7 +226,7 @@ public class UIController : MonoBehaviour
                 bonusUI.transform.SetParent(bonusContainer.transform);
                 bonusUI.transform.Find("icon").GetComponent<Image>().sprite = m.Key.icon;
                 bonusUI.transform.Find("name").GetComponent<TextMeshProUGUI>().text = m.Key.displayName;
-                bonusUI.transform.Find("count").GetComponent<TextMeshProUGUI>().text = m.Value.ToString() + " / " + m.Key.championBonus.championCount.ToString();
+                bonusUI.transform.Find("count").GetComponent<TextMeshProUGUI>().text = m.Value.ToString() + " / "; //+ m.Key.championBonus.championCount.ToString();
 
                 bonusUI.SetActive(true);
 

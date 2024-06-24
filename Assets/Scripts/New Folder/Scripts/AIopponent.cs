@@ -389,12 +389,14 @@ public class AIopponent : MonoBehaviour
             // 현재 타입에 해당하는 보너스를 가져옵니다.
             ChampionBonus championBonus = m.Key.championBonus;
 
-            // 해당 챔피언 타입 수가 보너스를 획득하기에 충분한지 확인합니다.
-            if (m.Value >= championBonus.championCount)
+            // 보너스 획득을 위해 충분한 챔피언 수 확인
+            for (int i = 0; i < championBonus.championCounts.Count; i++)
             {
-                // 충분한 수의 챔피언이 존재하여 보너스를 획득할 수 있는 경우,
-                // 해당 보너스를 활성 보너스 목록에 추가합니다.
-                activeBonusList.Add(championBonus);
+                if (m.Value >= championBonus.championCounts[i])
+                {
+                    // 충분한 챔피언 수가 있으면 보너스를 활성 목록에 추가
+                    activeBonusList.Add(championBonus);
+                }  
             }
         }
 
