@@ -239,15 +239,15 @@ MonoBehaviour:
   selectEffect: {fileID: 2197469807050951714, guid: 89df08a1eceaa0b418f53a102cfae287,
     type: 3}
   championBonus:
-    championCount: 0
+    championCounts: 
     championBonusType: 0
     bonusTarget: 1
-    bonusValue: 20
+    bonusValues: []
     duration: 0
     effectPrefab: {fileID: 0}
-  cardName: "\uB208"
+  cardName: 6
   cardExplain: "\uBAA8\uB4E0 \uCC54\uD53C\uC5B8\uC758 \uACF5\uACA9\uB825\uC774 20\uC0C1\uC2B9\uD569\uB2C8\uB2E4."
-  cardIcon: {fileID: 21300000, guid: 68eae9a6c9509254dac31ab674522033, type: 3}
+  cardIcon: {fileID: 21300000, guid: efa996253d50ac64a83160d82d4dca6e, type: 3}
 --- !u!114 &2901897245734720002
 MonoBehaviour:
   m_ObjectHideFlags: 0

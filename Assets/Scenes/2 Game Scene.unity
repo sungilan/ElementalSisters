@@ -9884,12 +9884,12 @@ PrefabInstance:
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
@@ -9899,7 +9899,7 @@ PrefabInstance:
     - target: {fileID: 7387125324240799344, guid: efebdf03cb1ccd043827e933755e413e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -30
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23041,6 +23041,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 468bf37df6ed62e4c9258ecea47d2797, type: 2}
   - {fileID: 11400000, guid: 8bcac1e019200d54fa4854275a8d83e8, type: 2}
   - {fileID: 11400000, guid: 212d287d49864f942a0068b0330933c5, type: 2}
+  - {fileID: 11400000, guid: 231b2a064f81eba45be0d0a2beb2a7bd, type: 2}
+  - {fileID: 11400000, guid: 5424d39753c03c54fba3e5d65a4935d5, type: 2}
+  - {fileID: 11400000, guid: ff9b618a4aeb99a468b98c6829ef6f17, type: 2}
+  - {fileID: 11400000, guid: 11cc2c9588aefdd45b7205032e14bed9, type: 2}
+  - {fileID: 11400000, guid: 1da7c5bdcca5d0c42a7be806a962274e, type: 2}
   championTypesArray:
   - {fileID: 11400000, guid: f3e567881c605d247b05775a39e704ed, type: 2}
   - {fileID: 11400000, guid: 33223db9cedb8c045990cb7a3b0144a3, type: 2}

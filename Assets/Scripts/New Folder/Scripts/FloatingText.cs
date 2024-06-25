@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,7 +50,7 @@ public class FloatingText : MonoBehaviour
 
         canvasGroup = this.GetComponent<CanvasGroup>();
 
-        this.GetComponent<Text>().text = Mathf.Round(v).ToString();
+        this.GetComponent<TextMeshPro>().text = Mathf.Round(v).ToString();
 
         moveDirection = new Vector3(Random.Range(-0.5f, 0.5f), 1, Random.Range(-0.5f, 0.5f)).normalized;
     }
