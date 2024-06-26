@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
@@ -9,6 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 public class InputController : MonoBehaviour
 {
+    private InputDevice targetDevice;
     public GamePlayController gamePlayController;
 
     //map script
@@ -28,6 +30,15 @@ public class InputController : MonoBehaviour
     {
         //set position of ray starting point to trigger objects
         rayCastStartPosition = new Vector3(0, 20, 0);
+
+        // 특정 컨트롤러하나만 가져오는 방법
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDeviceCharacteristics rightControllerCharacteristics =
+        InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+        InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
+ 
+        if (devices.Count > 0)
+        	targetDevice = devices[0];
     }
 
     //to store mouse position
@@ -40,6 +51,7 @@ public class InputController : MonoBehaviour
     /// Update is called once per frame
     void Update()
     {
+        Debug.Log("할당됨 "+targetDevice);
         triggerInfo = null;
         map.resetIndicators();
 
@@ -83,6 +95,14 @@ public class InputController : MonoBehaviour
         mousePosition = Input.mousePosition;
         ProcessXRInteraction(leftRayInteractor);
         ProcessXRInteraction(rightRayInteractor);
+
+        targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue);
+        if (primaryButtonValue)
+        	Debug.Log("Pressing primary button");
+ 
+        targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue);
+        if (triggerValue > 0.1F)
+        	Debug.Log("Trigger pressed " + triggerValue);
     }
     private void ProcessXRInteraction(XRRayInteractor rayInteractor)
     {
@@ -105,4 +125,5 @@ public class InputController : MonoBehaviour
             }
         }
     }
+    
 }

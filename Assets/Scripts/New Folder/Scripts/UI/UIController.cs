@@ -111,6 +111,11 @@ public class UIController : MonoBehaviour
     {
         gamePlayController.RecipeButton();
     }
+    public void Lock_Click()
+    {
+        championShop.isLock = !championShop.isLock;
+        Debug.Log(championShop.isLock);
+    }
 
     /// <summary>
     /// hides chamipon shop

@@ -14,6 +14,8 @@ public class ChampionShop : MonoBehaviour
     /// 구매할 수 있는 챔피언을 저장하는 배열
     public Champion[] availableChampionArray;
 
+    public bool isLock = false;
+
     /// Start is called before the first frame update
     void Start()
     {
@@ -39,36 +41,38 @@ public class ChampionShop : MonoBehaviour
     /// </summary>
     public void RefreshShop(bool isFree)
     {
-   
-        // 충분한 골드가 없다면 반환
-        if (gamePlayController.currentGold < 2 && isFree == false)
+        if(!isLock)
+        {
+            // 충분한 골드가 없다면 반환
+            if (gamePlayController.currentGold < 2 && isFree == false)
             return;
 
-        // 배열 초기화
-        availableChampionArray = new Champion[5];
+            // 배열 초기화
+            availableChampionArray = new Champion[5];
 
-        // 상점 채우기
-        for (int i = 0; i < availableChampionArray.Length; i++)
-        {
-            // 무작위 챔피언 가져오기
-            Champion champion = GetRandomChampionInfo();
+            // 상점 채우기
+            for (int i = 0; i < availableChampionArray.Length; i++)
+            {
+                // 무작위 챔피언 가져오기
+                Champion champion = GetRandomChampionInfo();
            
-            // 챔피언을 배열에 저장
-            availableChampionArray[i] = champion;
+                // 챔피언을 배열에 저장
+                availableChampionArray[i] = champion;
 
-            // UI에 챔피언 로드
-            uIController.LoadShopItem(champion, i);
+                // UI에 챔피언 로드
+                uIController.LoadShopItem(champion, i);
           
-            // 상점 아이템 표시
-            uIController.ShowShopItems();
+                // 상점 아이템 표시
+                uIController.ShowShopItems();
+            }
+
+            // 골드 차감
+            if (isFree == false)
+                gamePlayController.currentGold -= 2;
+
+            // UI 업데이트
+            uIController.UpdateUI();
         }
-
-        // 골드 차감
-        if (isFree == false)
-            gamePlayController.currentGold -= 2;
-
-        // UI 업데이트
-        uIController.UpdateUI();
     }
 
     /// <summary>
