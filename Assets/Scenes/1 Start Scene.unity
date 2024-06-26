@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 79910500}
   - component: {fileID: 79910499}
   m_Layer: 5
-  m_Name: About
+  m_Name: Creadit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1006,9 +1006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e419a4d4b65dfb94bae6eddedee04926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioName: uiclick
-  hoverEnterAudioName: uihoverenter
-  hoverExitAudioName: 
 --- !u!1 &321956990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,9 +1385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e419a4d4b65dfb94bae6eddedee04926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioName: uiclick
-  hoverEnterAudioName: uihoverenter
-  hoverExitAudioName: 
 --- !u!1001 &456398478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1850,9 +1844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e419a4d4b65dfb94bae6eddedee04926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioName: uiclick
-  hoverEnterAudioName: uihoverenter
-  hoverExitAudioName: 
 --- !u!1 &667479727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,6 +1939,56 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1212402845}
     m_Modifications:
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1212402847}
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameStartMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588454165708873133, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_Name
+      value: Creadit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886679456554313767, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
+        type: 3}
+      propertyPath: m_text
+      value: CREADIT
+      objectReference: {fileID: 0}
     - target: {fileID: 7555581275775271028, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2051,9 +2092,10 @@ PrefabInstance:
     - target: {fileID: 9055889768367142460, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
         type: 3}
       propertyPath: m_Name
-      value: Menu (1)
+      value: Menu
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7320969587475640313, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2133,18 +2175,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748388390}
   m_CullTransparentMesh: 1
---- !u!114 &765710634 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2391441846268268307, guid: 6fbabf5fa30a1844cb8a7f3e1035cecb,
-    type: 3}
-  m_PrefabInstance: {fileID: 688743786}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &770233790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,25 +2325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc44c5eb69748a45b697397b0740ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: uiclick
-    clip: {fileID: 8300000, guid: 4885bb3bfe406a44ab63462c4440da59, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: uihoverenter
-    clip: {fileID: 8300000, guid: c6dd68b4c268b8b48bb866311bf7ede6, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: uihoverexit
-    clip: {fileID: 8300000, guid: c00193f69f150124cbf3f5671b986b63, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
 --- !u!1 &846327981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,9 +2990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e419a4d4b65dfb94bae6eddedee04926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioName: uiclick
-  hoverEnterAudioName: uihoverenter
-  hoverExitAudioName: 
 --- !u!1 &1144905148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,9 +3124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e419a4d4b65dfb94bae6eddedee04926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioName: uiclick
-  hoverEnterAudioName: uihoverenter
-  hoverExitAudioName: 
 --- !u!1 &1163744328
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,7 +3287,6 @@ MonoBehaviour:
   mainMenu: {fileID: 1627232962}
   options: {fileID: 96565793}
   about: {fileID: 79910497}
-  startButton: {fileID: 765710634}
   optionButton: {fileID: 1436154170}
   aboutButton: {fileID: 2023803739}
   quitButton: {fileID: 38595064}
@@ -4022,9 +4026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e419a4d4b65dfb94bae6eddedee04926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickAudioName: uiclick
-  hoverEnterAudioName: uihoverenter
-  hoverExitAudioName: 
 --- !u!1 &1583509992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4470,11 +4471,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This game was made by XXX in 7 days for the VR Jam 2023.
-
-
-    Special
-    shoutout to my mom for always believing in me and to my pet penguin alfred. '
+  m_text: "\uC81C\uC791 : \uC1A1\uD615\uB3D9 \uC548\uC2B9\uC77C \uACE0\uADC0\uD55C
+    \uAE40\uC815\uC6B0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd, type: 2}
   m_sharedMaterial: {fileID: -4010768738915354958, guid: 86cb0f82da5e5e14bb7e6aabf2a645cd,
