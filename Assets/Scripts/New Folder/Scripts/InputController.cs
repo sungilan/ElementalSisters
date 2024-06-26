@@ -51,7 +51,6 @@ public class InputController : MonoBehaviour
     /// Update is called once per frame
     void Update()
     {
-        Debug.Log("할당됨 "+targetDevice);
         triggerInfo = null;
         map.resetIndicators();
 

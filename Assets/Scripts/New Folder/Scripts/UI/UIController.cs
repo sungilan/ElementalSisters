@@ -25,10 +25,12 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI goldText;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI roundText;
-    public TextMeshProUGUI saleText;
+    public TextMeshProUGUI sellText;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI currentExpText;
     [SerializeField] private Image Hpimage;
     [SerializeField] private Image BackHpimage;
+    [SerializeField] private Image Expimage;
     public bool backHpHit = false;
 
     public GameObject shop;
@@ -38,7 +40,7 @@ public class UIController : MonoBehaviour
     public GameObject bonusContainer;
     public GameObject bonusUIPrefab;
     public GameObject recipeUIPrefab;
-    public GameObject saleUIPrefab;
+    public GameObject sellUIPrefab;
 
     public Slider progressBar;
 
@@ -59,6 +61,12 @@ public class UIController : MonoBehaviour
             }
         }
     }
+    private void HandleExp()
+    {
+        Expimage.fillAmount = Mathf.Lerp(Expimage.fillAmount, (float)gamePlayController.currentExp / (float)gamePlayController.requiredExp, Time.deltaTime * 5f);
+    }
+
+    
 
     public void StartButtonClicked()
     {
@@ -209,7 +217,8 @@ public class UIController : MonoBehaviour
         goldText.text = gamePlayController.currentGold.ToString();
         championCountText.text = gamePlayController.currentChampionCount.ToString() + " / " + gamePlayController.currentChampionLimit.ToString();
         levelText.text = gamePlayController.currentLevel.ToString();
-        //hpText.text = "HP " + gamePlayController.currentHP.ToString();
+        currentExpText.text = gamePlayController.currentExp.ToString() + " / " + gamePlayController.requiredExp.ToString();
+        hpText.text = gamePlayController.currentHP.ToString() + " / " + gamePlayController.maxHP.ToString();
 
 
         //hide bonusus UI
@@ -296,6 +305,7 @@ public class UIController : MonoBehaviour
     private void Update()
     {
         HandleHp();
+        HandleExp();
         {
             if (gamePlayController.currentGameStage == GameStage.Preparation) // 현재 스테이지가 준비단계면
             {

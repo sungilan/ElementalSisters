@@ -46,8 +46,10 @@ public class GamePlayController : MonoBehaviour
     public int currentChampionLimit = 3; //현재 챔피언 제한(초기값 : 3) 
     [HideInInspector]
     public int currentChampionCount = 0; //현재 챔피언 수
-    [HideInInspector]
     public int currentGold = 5; //현재 골드
+
+    public int currentExp;
+    public int requiredExp;
     [HideInInspector]
     public int currentLevel = 1;
     [HideInInspector]
@@ -126,6 +128,8 @@ public class GamePlayController : MonoBehaviour
             // 플레이어의 위치를 새로운 위치로 변경합니다.
             playerPos.transform.position = playerCombatPos.transform.position;
         }
+
+        LevelUp();
     }
 
 
@@ -406,7 +410,7 @@ public class GamePlayController : MonoBehaviour
                         if (championController != null)
                         {
                             currentGold += championController.champion.cost;
-                            StartCoroutine(saleText());
+                            //StartCoroutine(saleText());
                             Debug.Log("챔피언" + draggedChampion + "을 팔아" + championController.champion.cost + "원이 증가했습니다.");
                         }
                     }
@@ -424,10 +428,6 @@ public class GamePlayController : MonoBehaviour
                     }
 
                 }
-
-
-
-
             }
 
             // 보너스를 계산합니다.
@@ -751,6 +751,7 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
             currentGameStage = GameStage.Preparation; // 현재스테이지를 준비단계로
 
             createSpecialCard.SetSpecialCard();
+            currentExp += 2;
 
             //show timer text
             //uIController.SetTimerTextActive(true);
@@ -811,22 +812,62 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
         //골드가 부족하면 이 함수를 빠져나옵니다.
         if (currentGold < 4) //현재 골드가 4보다 적으면
             return;
+        //경험치를 4 추가
+        currentExp += 4;
 
-        if(currentChampionLimit < 9) //현재 챔피언 제한이 9(최대)보다 적으면
-        {
-            currentLevel += 1;
-            //챔피언 보유 제한을 늘립니다.
-            currentChampionLimit++;
+        //4 골드를 지출합니다.
+        currentGold -= 4;
 
-            //4 골드를 지출합니다.
-            currentGold -= 4;
-
-            //ui를 업데이트합니다.
-            uIController.UpdateUI();
-        
-        }
+        //ui를 업데이트합니다.
+        uIController.UpdateUI();
       
     }
+
+    public void LevelUp()
+{
+    switch (currentLevel)
+    {
+        case 1:
+            requiredExp = 2;
+            break;
+        case 2:
+            requiredExp = 2;
+            break;
+        case 3:
+            requiredExp = 6;
+            break;
+        case 4:
+            requiredExp = 10;
+            break;
+        case 5:
+            requiredExp = 20;
+            break;
+        case 6:
+            requiredExp = 36;
+            break;
+        case 7:
+            requiredExp = 48;
+            break;
+        case 8:
+            requiredExp = 80;
+            break;
+        default:
+            Debug.Log("Max level reached or invalid level.");
+            return;
+    }
+
+    if (currentExp >= requiredExp)
+    {
+        currentExp -= requiredExp;
+        currentLevel += 1;
+
+        // 챔피언 보유 제한을 늘립니다.
+        currentChampionLimit++;
+
+        // UI를 업데이트합니다.
+        uIController.UpdateUI();
+    }
+}
 
     /// <summary>
     /// 라운드에서 졌을 때 호출
@@ -973,14 +1014,4 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
             }
         }
     }
-    IEnumerator saleText()
-    {
-        ChampionController championController = draggedChampion.GetComponent<ChampionController>();
-        Champion champion = championController.champion;
-        uIController.saleUIPrefab.SetActive(true);
-        uIController.saleText.text = "챔피언 " + champion.uiname + "을/를 팔아 " + championController.champion.cost + "원이 증가했습니다.";
-        yield return new WaitForSeconds(2);
-        uIController.saleUIPrefab.SetActive(false);
-    }
-    
 }

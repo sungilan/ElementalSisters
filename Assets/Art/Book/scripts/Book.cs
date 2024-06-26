@@ -20,6 +20,7 @@ public class Book : MonoBehaviour {
     public Sprite[] bookPages;
     public bool interactable=true;
     public bool enableShadowEffect=true;
+
     //represent the index of the sprite shown in the right page
     public int currentPage = 0;
     public int TotalPageCount

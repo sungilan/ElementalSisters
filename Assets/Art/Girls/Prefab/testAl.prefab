@@ -1262,7 +1262,7 @@ Transform:
   m_GameObject: {fileID: 8654486197237740641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.97, y: 0.02, z: 3.3463}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.41292197, y: 0.41292197, z: 0.41292197}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1303,8 +1303,12 @@ MonoBehaviour:
   champion: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
+  maxMana: 0
+  currentMana: 0
   currentDamage: 0
+  currentDefense: 0
   lvl: 1
+  _isDragged: 0
   isAttacking: 0
   isDead: 0
 --- !u!195 &2141413937776601394

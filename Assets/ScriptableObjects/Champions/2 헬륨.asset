@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
   m_Name: "2 \uD5EC\uB968"
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8667719494968036461, guid: d683cda3faaefbe43b9494be5ebe1a7a, type: 3}
+  prefab: {fileID: 7601021723985783129, guid: 651407f8b560bf1478019b88f4204f43, type: 3}
   attackProjectile: {fileID: 1238513822959078556, guid: 11e002f0c9b353a499ee5afa8d177cbe,
     type: 3}
   uiname: "\uD5EC\uB968"
@@ -23,6 +23,7 @@ MonoBehaviour:
   health: 300
   damage: 30
   defense: 10
+  mana: 100
   attackRange: 20
   cardMaterial: {fileID: 2100000, guid: 2d586608cf21be24482bc8877bcbb893, type: 2}
   attackEffectPrefab: {fileID: 3797749060670306938, guid: 920ba01bdc0ca4242bcd62b00e9ee988,
