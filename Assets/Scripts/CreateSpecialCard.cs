@@ -35,6 +35,7 @@ public class CreateSpecialCard : MonoBehaviour
     /// </summary>
     public void SetSpecialCard()
     {
+         SoundManager.instance.PlaySE("특성 카드 선택");
         // 배열 초기화
         availableSpecialCardArray = new SpecialCard[3];
 

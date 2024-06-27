@@ -16,13 +16,14 @@ MonoBehaviour:
   attackProjectile: {fileID: 3289508436278061462, guid: 4aff1b9e2ab06714ba4fd4abbd998400,
     type: 3}
   uiname: "\uB9DD\uAC04"
-  cost: 0
+  cost: 2
   type1: {fileID: 11400000, guid: 4d44ba0e3631918448da13f6a0902c54, type: 2}
   type2: {fileID: 11400000, guid: 200e54a10084f3941a1f2a3354741fb1, type: 2}
   type3: {fileID: 11400000, guid: 06e442b7caca628418f5672186240e86, type: 2}
   health: 300
   damage: 30
   defense: 10
+  mana: 100
   attackRange: 20
   cardMaterial: {fileID: 2100000, guid: a2e6824dabba8824482e8e3e8a4f2532, type: 2}
   attackEffectPrefab: {fileID: 6808358148016866922, guid: ee0274918566e98449cb697212c39d8f,

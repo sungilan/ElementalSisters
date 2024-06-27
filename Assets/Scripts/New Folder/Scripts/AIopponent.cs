@@ -78,20 +78,16 @@ public class AIopponent : MonoBehaviour
                         ////생존한 챔피언의 수에 비례하여 플레이어가 입을 데미지를 계산합니다.
                         if (championController.currentHealth > 0) //챔피언의 현재 체력이 0보다 클 경우
                             damage += championDamage; //플레이어가 입을 데미지에 챔피언의 데미지를 추가합니다.
+                        //플레이어가 damage만큼 피해를 입습니다.
+                        gamePlayController.TakeDamage(damage);
                     }
-
                 }
             }
-
-            //플레이어가 damage만큼 피해를 입습니다.
-            gamePlayController.TakeDamage(damage);
-
 
             ResetChampions(); //다음 라운드를 위해 챔피언을 리셋하고
 
 
             AddRandomChampion();  //무작위 챔피언을 추가합니다.
-          //  AddRandomChampion();
         }
     }
 
@@ -390,14 +386,11 @@ public class AIopponent : MonoBehaviour
             ChampionBonus championBonus = m.Key.championBonus;
 
             // 보너스 획득을 위해 충분한 챔피언 수 확인
-            for (int i = 0; i < championBonus.championCounts.Count; i++)
-            {
-                if (m.Value >= championBonus.championCounts[i])
+                if (m.Value >= championBonus.championCount)
                 {
                     // 충분한 챔피언 수가 있으면 보너스를 활성 목록에 추가
                     activeBonusList.Add(championBonus);
                 }  
-            }
         }
 
     }

@@ -34,6 +34,8 @@ public class UIController : MonoBehaviour
     public bool backHpHit = false;
 
     public GameObject shop;
+    public GameObject informationPanel;
+    public GameObject dictionaryPanel;
     public GameObject gameOverPanel;
     public GameObject restartButton;
     public GameObject gold;
@@ -94,6 +96,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void Refresh_Click()
     {
+        SoundManager.instance.PlaySE("리롤");
         championShop.RefreshShop(true);
     }
 
@@ -102,6 +105,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void BuyXP_Click()
     {
+        SoundManager.instance.PlaySE("경험치 상승");
         championShop.BuyLvl();
     }
 
@@ -121,6 +125,7 @@ public class UIController : MonoBehaviour
     }
     public void Lock_Click()
     {
+        SoundManager.instance.PlaySE("리롤");
         championShop.isLock = !championShop.isLock;
         Debug.Log(championShop.isLock);
     }
@@ -152,6 +157,20 @@ public class UIController : MonoBehaviour
             championsFrameArray[i].transform.Find("champion").gameObject.SetActive(true);
         }
     }
+
+    public void ShowInformationPanel()
+    {
+        SoundManager.instance.PlaySE("메뉴 클릭");
+        informationPanel.SetActive(!informationPanel.activeSelf);
+    }
+
+    public void ShowDictionaryPanel()
+    {
+        SoundManager.instance.PlaySE("메뉴 클릭");
+        dictionaryPanel.SetActive(!dictionaryPanel.activeSelf);
+    }
+
+    
 
     /// <summary>
     /// displays champion info to given index on UI
@@ -272,8 +291,6 @@ public class UIController : MonoBehaviour
     public void SetTimerTextActive(bool b)
     {
         timerText.gameObject.SetActive(b);
-
-        //placementText.SetActive(b);
     }
 
     /// <summary>

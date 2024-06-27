@@ -12,7 +12,7 @@ public enum BonusTarget {Self, Enemy};
 public class ChampionBonus
 {
     ///보너스 효과를 얻기위해 필요한 챔피언의 수
-    public List<int> championCounts;
+    public int championCount;
 
     ///보너스 타입
     public ChampionBonusType championBonusType;
@@ -21,7 +21,7 @@ public class ChampionBonus
     public BonusTarget bonusTarget;
 
     ///보너스 수치 (Damage 타입 : 데미지량, Heal 타입 : 힐량, stun 타입 : 스턴 확률, Defence 타입 : 방어력)
-    public List<float> bonusValues;
+    public float bonusValue;
 
     ///How many secounds bonus lasts
     public float duration;
@@ -40,32 +40,30 @@ public class ChampionBonus
         
         float bonusDamage = 0;
         bool addEffect = false;
-        for (int i = 0; i < championCounts.Count; i++)
-        {
+       
             switch (championBonusType)
         {
             case ChampionBonusType.Damage : //챔피언 보너스 타입이 Damage일 때
-                bonusDamage += bonusValues[i]; //보너스 수치만큼 bonusDamage에 추가(bonusValue가 곧 데미지양)
+                bonusDamage += bonusValue; //보너스 수치만큼 bonusDamage에 추가(bonusValue가 곧 데미지양)
                 break;
             case ChampionBonusType.DamagePercent : //챔피언 보너스 타입이 DamagePercent일 때
                 float baseDamage = champion.currentDamage;
-                bonusDamage += baseDamage * (bonusValues[i] / 100f); //보너스 퍼센트만큼 bonusDamage에 추가
+                bonusDamage += baseDamage * (bonusValue / 100f); //보너스 퍼센트만큼 bonusDamage에 추가
                 break;
             case ChampionBonusType.Stun: //챔피언 보너스 타입이 Stun일 때
                 int rand = Random.Range(0, 100); //0~100의 
-                if (rand < bonusValues[i]) //bonusValue가 rand보다 크면 ex) bonusValue가 60이면 60/100의 확률로 스턴 실행
+                if (rand < bonusValue) //bonusValue가 rand보다 크면 ex) bonusValue가 60이면 60/100의 확률로 스턴 실행
                 {
                     targetChampion.OnGotStun(duration); //스턴을 건다(스턴 시간만큼)
                     addEffect = true; // 스턴 이펙트
                 }
                 break;
             case ChampionBonusType.Heal: //챔피언 보너스 타입이 Heal일 때
-                champion.OnGotHeal(bonusValues[i]); //bonusValue만큼 힐
+                champion.OnGotHeal(bonusValue); //bonusValue만큼 힐
                 addEffect = true; //힐 이펙트
                 break;
             default:
                 break;
-        }
         }
         
 
@@ -89,19 +87,16 @@ public class ChampionBonus
     /// <param name="damage"></param>
     /// <returns></returns>
     public float ApplyOnGotHit(ChampionController champion, float damage)
-    {
-        for (int i = 0; i < championCounts.Count; i++)
-        {
+    { 
         switch (championBonusType)
         {        
             case ChampionBonusType.Defense: //챔피언 보너스 타입이 Defense일 때
-                damage = ((100 - bonusValues[i]) / 100) * damage;
+                damage = ((100 - bonusValue) / 100) * damage;
                 break;   
             default:
                 break;
         }
-        }
-
+    
         return damage;
     }
 }

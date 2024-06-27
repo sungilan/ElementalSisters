@@ -16,7 +16,7 @@ MonoBehaviour:
   attackProjectile: {fileID: 3289508436278061462, guid: 4aff1b9e2ab06714ba4fd4abbd998400,
     type: 3}
   uiname: "\uBAB0\uB9AC\uBE0C\uB370\uB118"
-  cost: 0
+  cost: 4
   type1: {fileID: 11400000, guid: f2e5ddd3cc743ba44bd0d90e0690abb7, type: 2}
   type2: {fileID: 11400000, guid: 200e54a10084f3941a1f2a3354741fb1, type: 2}
   type3: {fileID: 11400000, guid: 7c4ad11ae5855624ea6c2ef785aa8963, type: 2}

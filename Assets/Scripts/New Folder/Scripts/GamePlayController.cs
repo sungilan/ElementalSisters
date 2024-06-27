@@ -131,6 +131,10 @@ public class GamePlayController : MonoBehaviour
 
         LevelUp();
     }
+    public void ChangePlayerPos()
+    {
+        playerPos.transform.position = playerPreparationPos1.transform.position;
+    }
 
 
 
@@ -302,6 +306,7 @@ public class GamePlayController : MonoBehaviour
     /// </summary>
     public void StartDrag()
     {
+        SoundManager.instance.PlaySE("유닛 드래그 시작");
         // 현재 게임 스테이지가 준비 스테이지가 아니면 드래그를 불가능하게 합니다.
         if (currentGameStage != GameStage.Preparation) //현재 스테이지가 준비 스테이지가 아니면
             return; // 빠져나온다(드래그 불가)
@@ -337,6 +342,7 @@ public class GamePlayController : MonoBehaviour
     /// </summary>
     public void StopDrag()
     {
+        SoundManager.instance.PlaySE("유닛 드래그 끝");
         // 인디케이터를 숨깁니다.
         map.HideIndicators();
 
@@ -603,49 +609,19 @@ public class GamePlayController : MonoBehaviour
         //activeBonusList = new List<ChampionBonus>();
 
         // 각 챔피언 종류별로 보너스 계산
-foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
-{
-    ChampionType championType = pair.Key;
-    int championCount = pair.Value;
-
-    Debug.Log("챔피언 타입: " + championType + ", 챔피언 수: " + championCount);
-
-    // 챔피언 종류에 해당하는 보너스 가져오기
-    ChampionBonus championBonus = championType.championBonus;
-
-    // 보너스 획득을 위해 충분한 챔피언 수 확인
-    for (int i = 0; i < championBonus.championCounts.Count; i++)
-    {
-        Debug.Log("필요한 챔피언 수: " + championBonus.championCounts[i] + ", 현재 챔피언 수: " + championCount);
-
-        if (championCount >= championBonus.championCounts[i])
+// 챔피언 타입별 수를 나타내는 championTypeCount 딕셔너리를 순회합니다.
+        foreach (KeyValuePair<ChampionType, int> m in championTypeCount)
         {
-            // 보너스 값 설정
-            float bonusValue = championBonus.bonusValues[i];
-            Debug.Log("적용할 보너스 값: " + bonusValue);
+            // 현재 타입에 해당하는 보너스를 가져옵니다.
+            ChampionBonus championBonus = m.Key.championBonus;
 
-            // 새로운 보너스 객체 생성
-            ChampionBonus activeBonus = new ChampionBonus
-            {
-                championCounts = new List<int> { championBonus.championCounts[i] },
-                championBonusType = championBonus.championBonusType,
-                bonusTarget = championBonus.bonusTarget,
-                bonusValues = new List<float> { bonusValue },
-                duration = championBonus.duration,
-                effectPrefab = championBonus.effectPrefab
-            };
-
-            // 충분한 챔피언 수가 있으면 보너스를 활성 목록에 추가
-            activeBonusList.Add(activeBonus);
-            Debug.Log("추가된 보너스 : " + bonusValue);
-
-            // 한 번의 보너스만 추가하도록 설정
-            break;
+            // 보너스 획득을 위해 충분한 챔피언 수 확인
+                if (m.Value >= championBonus.championCount)
+                {
+                    // 충분한 챔피언 수가 있으면 보너스를 활성 목록에 추가
+                    activeBonusList.Add(championBonus);
+                }  
         }
-    }
-}
-
-
     }
     public void ApplyChampionBonus(ChampionBonus bonus)
 {
@@ -688,6 +664,7 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
 
         if (currentGameStage == GameStage.Preparation) // 현재스테이지가 준비단계이면
         {
+            SoundManager.instance.PlaySE("라운드 시작");
             roundCount += 1;
             //set new game stage
             currentGameStage = GameStage.Combat; // 현재스테이지를 전투단계로
@@ -750,7 +727,11 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
             //set new game stage
             currentGameStage = GameStage.Preparation; // 현재스테이지를 준비단계로
 
-            createSpecialCard.SetSpecialCard();
+            if(roundCount == 2 || roundCount == 5 || roundCount == 10 || roundCount == 15 || roundCount == 20 || roundCount == 25 || roundCount == 30)
+            {
+                createSpecialCard.SetSpecialCard();
+            }
+
             currentExp += 2;
 
             //show timer text
@@ -810,7 +791,7 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
     public void Buylvl()
     {
         //골드가 부족하면 이 함수를 빠져나옵니다.
-        if (currentGold < 4) //현재 골드가 4보다 적으면
+        if (currentGold < 4 || currentLevel == 10) //현재 골드가 4보다 적으면
             return;
         //경험치를 4 추가
         currentExp += 4;
@@ -851,6 +832,9 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
         case 8:
             requiredExp = 80;
             break;
+        case 9:
+            requiredExp = 84;
+            break;
         default:
             Debug.Log("Max level reached or invalid level.");
             return;
@@ -875,10 +859,10 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
     /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
+        SoundManager.instance.PlaySE("라운드 패배");
         currentHP -= damage;
         uIController.backHpHit = true;
         uIController.UpdateUI();
-
     }
 
     /// <summary>
@@ -886,9 +870,6 @@ foreach (KeyValuePair<ChampionType, int> pair in championTypeCount)
     /// </summary>
     public void RestartGame()
     {
-       
-       
-
         //챔피언을 제거합니다.
         for (int i = 0; i < ownChampionInventoryArray.Length; i++)
         {

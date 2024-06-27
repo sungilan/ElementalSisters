@@ -54,9 +54,6 @@ public class ChampionAnimation : MonoBehaviour
         animator.SetBool("isAttacking", false);
 
         championController.OnAttackAnimationFinished();
-
-        //Debug.Log("OnAttackAnimationFinished");
-
     }
 
     /// <summary>

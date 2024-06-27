@@ -38,7 +38,7 @@ private void Start()
     }
     public void SellChampion()
     {
-        
+        SoundManager.instance.PlaySE("유닛 판매음");
         ChampionController championController = GetComponent<ChampionController>();
         if (championController != null)
             {

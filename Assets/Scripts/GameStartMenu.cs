@@ -28,7 +28,7 @@ public class GameStartMenu : MonoBehaviour
 
         //Hook events
         optionButton.onClick.AddListener(EnableOption);
-        aboutButton.onClick.AddListener(EnableAbout);
+        aboutButton.onClick.AddListener(EnableCreadit);
         quitButton.onClick.AddListener(QuitGame);
 
         foreach (var item in returnButtons)
@@ -39,6 +39,7 @@ public class GameStartMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        SoundManager.instance.PlaySE("메뉴 클릭");
         #if UNITY_EDITOR
         EditorApplication.isPlaying = false; // This will stop the play mode in the editor
         #else
@@ -48,6 +49,7 @@ public class GameStartMenu : MonoBehaviour
 
     public void StartGame(int index)
     {
+        SoundManager.instance.PlaySE("메뉴 클릭");
         HideAll();
         SceneTransitionManager.singleton.GoToSceneAsync(index);
     }
@@ -61,18 +63,24 @@ public class GameStartMenu : MonoBehaviour
 
     public void EnableMainMenu()
     {
+        SoundManager.instance.PlaySE("메뉴 클릭");
+        SoundManager.instance.PlaySE("메뉴 클로즈");
         mainMenu.SetActive(true);
         options.SetActive(false);
         about.SetActive(false);
     }
     public void EnableOption()
     {
+        SoundManager.instance.PlaySE("메뉴 클릭");
+        SoundManager.instance.PlaySE("메뉴 오픈");
         mainMenu.SetActive(false);
         options.SetActive(true);
         about.SetActive(false);
     }
-    public void EnableAbout()
+    public void EnableCreadit()
     {
+        SoundManager.instance.PlaySE("메뉴 클릭");
+        SoundManager.instance.PlaySE("메뉴 오픈");
         mainMenu.SetActive(false);
         options.SetActive(false);
         about.SetActive(true);

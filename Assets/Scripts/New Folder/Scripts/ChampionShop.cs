@@ -54,7 +54,7 @@ public class ChampionShop : MonoBehaviour
             for (int i = 0; i < availableChampionArray.Length; i++)
             {
                 // 무작위 챔피언 가져오기
-                Champion champion = GetRandomChampionInfo();
+                Champion champion = GetRandomChampionByPlayerLevel(gamePlayController.currentLevel);
            
                 // 챔피언을 배열에 저장
                 availableChampionArray[i] = champion;
@@ -99,4 +99,95 @@ public class ChampionShop : MonoBehaviour
         return gameData.championsArray[rand];
 
     }
+
+// 각 플레이어 레벨별로 1코스트 ~ 5코스트 챔피언의 출현 확률 (합은 100)
+private static readonly int[,] levelCostProbability = new int[,]
+{
+    // 1레벨, 2레벨, 3레벨, 4레벨, 5레벨, ..., n레벨
+    {100, 0, 0, 0, 0},    // 1레벨에서의 확률 (100% 1코스트)
+    {100, 0, 0, 0, 0},    // 2레벨에서의 확률 (75% 1코스트, 25% 2코스트)
+    {75, 25, 0, 0, 0},   // 3레벨에서의 확률 (55% 1코스트, 30% 2코스트, 15% 3코스트)
+    {55, 30, 15, 0, 0},   // 4레벨에서의 확률
+    {45, 33, 20, 2, 0},   // 5레벨에서의 확률
+    {30, 40, 25, 5, 0},  // 6레벨에서의 확률
+    {19, 35, 35, 10, 1},  // 7레벨에서의 확률
+    {18, 25, 36, 18, 3},  // 8레벨에서의 확률
+    {10, 20, 25, 35, 10}, // 9레벨에서의 확률
+    {5, 10, 20, 40, 25}   // 10레벨에서의 확률
+};
+
+/// <summary>
+/// 플레이어 레벨에 따라 무작위로 코스트를 선택합니다.
+/// </summary>
+/// <param name="playerLevel">플레이어 레벨 (1~10)</param>
+/// <returns>선택된 코스트 (1~5)</returns>
+private int GetRandomCostByPlayerLevel(int playerLevel)
+{
+
+    // 해당 레벨의 확률 배열을 가져옴
+    int[] probabilities = new int[5];
+    for (int i = 0; i < 5; i++)
+    {
+        probabilities[i] = levelCostProbability[playerLevel - 1, i];
+    }
+
+    // 무작위 값 생성 (0부터 99까지)
+    int randomValue = Random.Range(0, 100);
+    int cumulativeProbability = 0;
+
+    // 누적 확률에 따라 코스트 선택
+    for (int i = 0; i < 5; i++)
+    {
+        cumulativeProbability += probabilities[i];
+        if (randomValue < cumulativeProbability)
+        {
+            return i + 1; // 코스트 값은 1부터 시작하므로 i+1 반환
+        }
+    }
+
+    return 1; // 기본값 (이론상 도달하지 않음)
+}
+
+/// <summary>
+/// 특정 cost에 해당하는 챔피언 목록을 반환합니다.
+/// </summary>
+/// <param name="cost">챔피언의 cost 값 (1~5)</param>
+/// <returns>해당 cost에 해당하는 챔피언 목록</returns>
+public List<Champion> GetChampionsByCost(int cost)
+{
+    List<Champion> championsByCost = new List<Champion>();
+
+    foreach (var champion in gameData.championsArray)
+    {
+        if (champion.cost == cost)
+        {
+            championsByCost.Add(champion);
+        }
+    }
+
+    return championsByCost;
+}
+
+/// <summary>
+/// 특정 cost 범위 내에서 무작위 챔피언을 반환합니다.
+/// </summary>
+/// <param name="cost">챔피언의 cost 값 (1~5)</param>
+/// <returns>무작위로 선택된 챔피언</returns>
+public Champion GetRandomChampionByCost(int cost)
+{
+    List<Champion> championsByCost = GetChampionsByCost(cost);
+    int rand = Random.Range(0, championsByCost.Count);
+    return championsByCost[rand];
+}
+
+/// <summary>
+/// 플레이어 레벨에 따라 무작위 챔피언을 반환합니다.
+/// </summary>
+/// <param name="playerLevel">플레이어 레벨 (1~10)</param>
+/// <returns>무작위로 선택된 챔피언</returns>
+public Champion GetRandomChampionByPlayerLevel(int playerLevel)
+{
+    int cost = GetRandomCostByPlayerLevel(playerLevel);
+    return GetRandomChampionByCost(cost);
+}
 }
