@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
   m_Name: "51 \uC548\uD2F0\uBAA8\uB2C8"
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2177157302719539765, guid: f863d48ba3d595d4989864e6f2decee4, type: 3}
+  prefab: {fileID: 8786860388181476424, guid: 870a19de6b6652b4aa05c8a54d5c4f75, type: 3}
   attackProjectile: {fileID: 3289508436278061462, guid: 4aff1b9e2ab06714ba4fd4abbd998400,
     type: 3}
   uiname: "\uC548\uD2F0\uBAA8\uB2C8"
