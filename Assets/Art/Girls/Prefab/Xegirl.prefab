@@ -661,6 +661,37 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00011414136, y: 0.0008680565, z: 0.00021465449}
     m_Extent: {x: 0.0001753403, y: 0.00028177578, z: 0.00004138687}
   m_DirtyAABB: 0
+--- !u!1 &3512966880527494919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4080970036655475190}
+  m_Layer: 0
+  m_Name: ProjectileStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4080970036655475190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512966880527494919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0966, y: -0.0084, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3870998489463847870}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3554923760980679494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelupEffectPrefab: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa,
     type: 3}
-  projectileStart: {fileID: 0}
+  projectileStart: {fileID: 3512966880527494919}
   gridType: 0
   gridPositionX: 0
   gridPositionZ: 0
@@ -1508,6 +1539,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9059091870084772359}
+  - {fileID: 4080970036655475190}
   m_Father: {fileID: 5230929832978409421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8888292360881273883

@@ -258,8 +258,14 @@ public class UIController : MonoBehaviour
                 bonusUI.transform.SetParent(bonusContainer.transform);
                 bonusUI.transform.Find("icon").GetComponent<Image>().sprite = m.Key.icon;
                 bonusUI.transform.Find("name").GetComponent<TextMeshProUGUI>().text = m.Key.displayName;
-                bonusUI.transform.Find("count").GetComponent<TextMeshProUGUI>().text = m.Value.ToString() + " / "; //+ m.Key.championBonus.championCount.ToString();
-
+                bonusUI.transform.Find("count").GetComponent<TextMeshProUGUI>().text = m.Value.ToString() + " / " + m.Key.championBonus.championCount.ToString();
+                
+                // Change the color of the bonus panel when it is active
+                if(m.Value == m.Key.championBonus.championCount)
+                {
+                   bonusUI.GetComponent<Image>().color = new Color(0.803f, 0.498f, 0.196f);
+                }
+                
                 bonusUI.SetActive(true);
 
                 i++;   

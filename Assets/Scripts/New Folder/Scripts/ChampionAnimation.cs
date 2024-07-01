@@ -55,6 +55,10 @@ public class ChampionAnimation : MonoBehaviour
 
         championController.OnAttackAnimationFinished();
     }
+    public void OnUseskill()
+    {
+        animator.SetTrigger("useSkill");
+    }
 
     /// <summary>
     /// 애니메이션 상태를 설정합니다.

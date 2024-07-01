@@ -10,17 +10,13 @@ public class ManaBar : MonoBehaviour
 {
     private GameObject championGO;
     private ChampionController championController;
-    //private Renderer barRenderer; // Ã¼·Â¹Ù ·»´õ·¯
-    private Image barImage;
-
-    private float initialScaleX; // ÃÊ±â Ã¼·Â¹Ù ³Êºñ
+    [SerializeField] private Image Mpimage;
+    private float currentFillAmount;
 
     /// Start is called before the first frame update
     void Start()
     {
-        //barRenderer = GetComponent<Renderer>(); // Ã¼·Â¹ÙÀÇ ·»´õ·¯ ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
-        barImage = GetComponent<Image>();
-        initialScaleX = transform.localScale.x; // ÃÊ±â Ã¼·Â¹Ù ³Êºñ ÀúÀå
+        currentFillAmount = Mpimage.fillAmount;
     }
 
     /// Update is called once per frame
@@ -29,37 +25,39 @@ public class ManaBar : MonoBehaviour
         if (championGO != null)
         {
             this.transform.position = championGO.transform.position + new Vector3(0, 4.2f, 0);
-            // Ã¨ÇÇ¾ğÀÇ ÇöÀç Ã¼·Â°ú ÃÖ´ë Ã¼·Â ºñÀ² °è»ê
-            float manaRatio = championController.currentMana / championController.maxMana;
+            // ì±”í”¼ì–¸ì˜ í˜„ì¬ ì²´ë ¥ê³¼ ìµœëŒ€ ì²´ë ¥ ë¹„ìœ¨ ê³„ì‚°
+            float targetFillAmount = championController.currentMana / championController.maxMana;
 
-            // Ã¼·Â¹Ù ³Êºñ¸¦ ºñÀ²¿¡ µû¶ó º¯°æ
-            Vector3 newScale = transform.localScale;
-            newScale.x = initialScaleX * manaRatio;
-            transform.localScale = newScale;
+            // ë§ˆë‚˜ë°” ë„ˆë¹„ë¥¼ ë¹„ìœ¨ì— ë”°ë¼ ë³€ê²½
+            currentFillAmount = Mathf.Lerp(currentFillAmount, targetFillAmount, 5f * Time.deltaTime);
+            Mpimage.fillAmount = currentFillAmount;
 
-            // Ã¨ÇÇ¾ğÀÇ Ã¼·Â¿¡ µû¶ó »ö»ó º¯°æ
-            Color barColor = Color.Lerp(Color.red, Color.blue, manaRatio);
-            barImage.color = barColor;
+            Color barColor = Color.blue;
+            Mpimage.color = barColor;
 
-            // Ã¨ÇÇ¾ğÀÇ Ã¼·ÂÀÌ 0 ÀÌÇÏ°¡ µÇ¸é ¸¶³ª¹Ù¸¦ ÆÄ±«
+            // ì±”í”¼ì–¸ì˜ ì²´ë ¥ì´ 0 ì´í•˜ê°€ ë˜ë©´ ë§ˆë‚˜ë°”ë¥¼ íŒŒê´´
             if (championController.currentHealth <= 0)
             {
                 championGO = null;
                 Destroy(this.gameObject);
-                Debug.Log("¸¶³ª¹Ù »èÁ¦");
+            }
+            if(championController.currentMana == championController.maxMana)
+            {
+                championController.currentMana = 0;
+                championController.UseSkill();
             }
         }
     }
 
     /// <summary>
-    /// Ã¨ÇÇ¾ğÀÌ »ı¼ºµÇ¾úÀ» ¶§ È£ÃâµË´Ï´Ù.
+    /// ì±”í”¼ì–¸ì´ ìƒì„±ë˜ì—ˆì„ ë•Œ í˜¸ì¶œë©ë‹ˆë‹¤.
     /// </summary>
     /// <param name="_championGO"></param>
     public void Init(GameObject _championGO)
     {
         championGO = _championGO;
         championController = championGO.GetComponent<ChampionController>();
-        //ÀÌ Init ¸Ş¼Òµå´Â HealthBar ÄÄÆ÷³ÍÆ®ÀÇ ÃÊ±âÈ­¸¦ ´ã´çÇÕ´Ï´Ù. ³Ñ°Ü¹ŞÀº _championGO¸¦ championGO¿¡ ÇÒ´çÇÏ¿© ÇØ´ç Ã¼·Â¹Ù°¡ ¾î¶² Ã¨ÇÇ¾ğ¿¡ ´ëÇÑ °ÍÀÎÁö ÀúÀåÇÕ´Ï´Ù. ¶ÇÇÑ, championGO·ÎºÎÅÍ ChampionController ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿Í championController¿¡ ÇÒ´çÇÕ´Ï´Ù. ÀÌ·¸°Ô ÇÔÀ¸·Î½á ÀÌÈÄ¿¡ Ã¼·Â¹Ù°¡ Ã¨ÇÇ¾ğÀÇ »óÅÂ¸¦ °¨ÁöÇÏ°í Ç¥½ÃÇÒ ¼ö ÀÖ°Ô µË´Ï´Ù.
+        //ì´ Init ë©”ì†Œë“œëŠ” HealthBar ì»´í¬ë„ŒíŠ¸ì˜ ì´ˆê¸°í™”ë¥¼ ë‹´ë‹¹í•©ë‹ˆë‹¤. ë„˜ê²¨ë°›ì€ _championGOë¥¼ championGOì— í• ë‹¹í•˜ì—¬ í•´ë‹¹ ì²´ë ¥ë°”ê°€ ì–´ë–¤ ì±”í”¼ì–¸ì— ëŒ€í•œ ê²ƒì¸ì§€ ì €ì¥í•©ë‹ˆë‹¤. ë˜í•œ, championGOë¡œë¶€í„° ChampionController ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì™€ championControllerì— í• ë‹¹í•©ë‹ˆë‹¤. ì´ë ‡ê²Œ í•¨ìœ¼ë¡œì¨ ì´í›„ì— ì²´ë ¥ë°”ê°€ ì±”í”¼ì–¸ì˜ ìƒíƒœë¥¼ ê°ì§€í•˜ê³  í‘œì‹œí•  ìˆ˜ ìˆê²Œ ë©ë‹ˆë‹¤.
 
     }
 }

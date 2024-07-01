@@ -33,21 +33,19 @@ public class ChampionController : MonoBehaviour
     /// 챔피언의 최대 체력
     public float maxHealth = 0;
 
-    [HideInInspector]
     /// 챔피언의 현재 체력
     public float currentHealth = 0;
     [HideInInspector]
     /// 챔피언의 최대 마나
     public float maxMana = 0;
-    [HideInInspector]
     /// 챔피언의 현재 마나
     public float currentMana = 0;
 
-    [HideInInspector]
     /// 챔피언의 현재 데미지
     public float currentDamage = 0;
-    [HideInInspector]
+
     /// 챔피언의 현재 방어력
+    [HideInInspector]
     public float currentDefense = 0;
 
     [HideInInspector]
@@ -114,10 +112,10 @@ public class ChampionController : MonoBehaviour
         currentDamage = champion.damage;
         currentDefense = champion.defense;
         maxMana = champion.mana;
-        currentMana = champion.mana;
+        currentMana = 0;
 
         worldCanvasController.AddHealthBar(this.gameObject); //체력바 추가
-        worldCanvasController.AddManaBar(this.gameObject); //체력바 추가
+        worldCanvasController.AddManaBar(this.gameObject); //마나바 추가
         healthBar = GetComponentInChildren<HealthBar>();
 
         effects = new List<Effect>(); //이펙트
@@ -265,7 +263,7 @@ public class ChampionController : MonoBehaviour
         maxHealth = champion.health * lvl;
         currentHealth = champion.health * lvl;
         maxMana = champion.mana * lvl;
-        currentMana = champion.mana * lvl;
+        currentMana = 0;
         isDead = false;
         isInCombat = false;
         target = null;
@@ -585,7 +583,7 @@ public class ChampionController : MonoBehaviour
     /// </summary>
     public void OnAttackAnimationFinished()
     {
-        //Debug.Log("OnAttack");
+        currentMana += 10f;
         isAttacking = false;
 
         if (target != null)
@@ -754,4 +752,10 @@ public class ChampionController : MonoBehaviour
         effect.Remove();
     }
 
+    public void UseSkill()
+    {
+        GameObject skillEffect = Instantiate(champion.skillEffectPrefab, this.transform.position, this.transform.rotation);
+        Destroy(skillEffect, 3f);
+        championAnimation.OnUseskill();
+    }
 }

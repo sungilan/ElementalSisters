@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639aac516ce9a2344bcbaf8acbe08e17, type: 3}
   m_Name: Group 18
   m_EditorClassIdentifier: 
-  displayName: "18\uC871"
+  displayName: "\uBE44\uD65C\uC131\uAE30\uCCB4"
   icon: {fileID: 21300000, guid: 23774bbb7ae2cb34da8043afa2f13698, type: 3}
   championBonus:
-    championCounts: 
+    championCount: 2
     championBonusType: 2
     bonusTarget: 1
-    bonusValues: []
+    bonusValue: 0
     duration: 1.5
     effectPrefab: {fileID: 7519005589694912038, guid: 3b2293f32fdde314aaf20f7bbeb003b9,
       type: 3}

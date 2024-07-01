@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
   m_Name: "5 \uBD95\uC18C"
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3371619475294981199, guid: 9cc68490c4c8b18408ee6ae4d67a5e5a, type: 3}
+  prefab: {fileID: 6701497893247912496, guid: cdac7dd7ebef76a4bb25e5211f7089e1, type: 3}
   attackProjectile: {fileID: 0}
   uiname: "\uBD95\uC18C"
   cost: 1
@@ -28,3 +28,5 @@ MonoBehaviour:
   attackEffectPrefab: {fileID: 3797749060670306938, guid: 920ba01bdc0ca4242bcd62b00e9ee988,
     type: 3}
   attackEffectDuration: 1
+  skillEffectPrefab: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
+    type: 3}

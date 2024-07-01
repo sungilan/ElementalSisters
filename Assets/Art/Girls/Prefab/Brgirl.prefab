@@ -471,7 +471,7 @@ Transform:
   m_GameObject: {fileID: 2720325834377140505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.16, y: 0, z: 0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -644,7 +644,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3246522353277276970}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -653,7 +653,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -691,6 +691,8 @@ MonoBehaviour:
   champion: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
+  maxMana: 0
+  currentMana: 0
   currentDamage: 0
   currentDefense: 0
   lvl: 1

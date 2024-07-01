@@ -27,7 +27,7 @@ public class ChampionCombination : MonoBehaviour
     void Start()
     {
         // Unity Inspector에서 버튼을 할당하고 클릭 이벤트에 함수를 추가합니다.
-        yourButton.onClick.AddListener(TaskOnClick);
+        //yourButton.onClick.AddListener(TaskOnClick);
         map = GameObject.Find("Scripts").GetComponent<Map>();
         gamePlayController = GameObject.Find("Scripts").GetComponent<GamePlayController>();
     }
@@ -132,6 +132,7 @@ public class ChampionCombination : MonoBehaviour
     // 모든 챔피언들을 체크해서 allChampions 리스트에 저장 후, allChampions에 조합에 필요한 모든 input 챔피언들이 존재하는지 확인하는 방식으로 수정
    public void CreateNewChampionAuto()
     {
+        Debug.Log("조합 고고씽");
         // gamePlayController나 map이 null이면 작업을 진행하지 않고 함수를 종료합니다.
         if (gamePlayController == null || map == null)
         {

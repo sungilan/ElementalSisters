@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922b77e70f5edd844bfbf722ca138255, type: 3}
   m_Name: "7 \uC9C8\uC18C"
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2683252443380558476, guid: 847b5df95601bca419a95b805b89e941, type: 3}
+  prefab: {fileID: 2199369922446613159, guid: fe24e664cbc1a214a88147823dd27d3f, type: 3}
   attackProjectile: {fileID: 4297886492705214997, guid: 37304f406cd18f34a9ddc566ee84c185,
     type: 3}
   uiname: "\uC9C8\uC18C"
@@ -28,4 +28,6 @@ MonoBehaviour:
   cardMaterial: {fileID: 2100000, guid: e7ed59b1fe45cfc4681c9169231e25bb, type: 2}
   attackEffectPrefab: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
     type: 3}
-  attackEffectDuration: 1
+  attackEffectDuration: 0.2
+  skillEffectPrefab: {fileID: 161766660727748596, guid: 05ce920d629922a4eb4795ef7494ce5c,
+    type: 3}

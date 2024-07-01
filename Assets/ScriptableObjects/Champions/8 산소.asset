@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "8 \uC0B0\uC18C"
   m_EditorClassIdentifier: 
   prefab: {fileID: 6343137866458537741, guid: 6b43267d6eab44a48bb6d5343d4714f2, type: 3}
-  attackProjectile: {fileID: 3944485609190240389, guid: d7637aef7c77dea4b94be621f2183ee7,
+  attackProjectile: {fileID: 362498970877564905, guid: db2e2cc8e90db81459bccb8899faf3fa,
     type: 3}
   uiname: "\uC0B0\uC18C"
   cost: 1
@@ -26,6 +26,7 @@ MonoBehaviour:
   mana: 100
   attackRange: 8
   cardMaterial: {fileID: 2100000, guid: 2c990491b1be79146836dc60972d329a, type: 2}
-  attackEffectPrefab: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
-    type: 3}
+  attackEffectPrefab: {fileID: 0}
   attackEffectDuration: 1
+  skillEffectPrefab: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
+    type: 3}
