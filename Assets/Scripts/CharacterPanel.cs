@@ -1,21 +1,34 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class CharacterPanel : XRBaseInteractable
 {
 
-Map map;
-GamePlayController gamePlayController;
-UIController uiController;
-public GameObject panel;
-private void Start() 
-{
-    map = FindObjectOfType<Map>();
-    gamePlayController = FindObjectOfType<GamePlayController>();
-    uiController = FindObjectOfType<UIController>();
-}
+    Map map;
+    GamePlayController gamePlayController;
+    [SerializeField] ChampionCombination championCombination;
+    UIController uiController;
+    public GameObject panel;
+    public Button comButton;
+    private void Start() 
+    {
+        championCombination = FindObjectOfType<ChampionCombination>();
+        map = FindObjectOfType<Map>();
+        gamePlayController = FindObjectOfType<GamePlayController>();
+        uiController = FindObjectOfType<UIController>();
+
+        if(comButton != null) 
+            comButton.onClick.AddListener(Test);
+    }
+
+    private void Test()
+    {
+        championCombination.CreateNewChampionAuto();
+    }
+
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         XRRayInteractor rayInteractor = (XRRayInteractor)args.interactorObject;
@@ -43,9 +56,11 @@ private void Start()
         if (championController != null)
             {
                 gamePlayController.currentGold += championController.champion.cost;
+                uiController.UpdateUI();
                 StartCoroutine(SellText());
             }
-            Destroy(gameObject);
+            championController.currentHealth = 0;
+            Destroy(gameObject,1.2f);
     }
     IEnumerator SellText()
     {
@@ -56,5 +71,5 @@ private void Start()
         yield return new WaitForSeconds(1f);
         uiController.sellUIPrefab.SetActive(false);
     }
-    
-}
+
+    }

@@ -19,10 +19,10 @@ public class ChampionCombination : MonoBehaviour
     public List<CombinationRecipe> combinationRecipes; // 조합식 리스트
     private List<Champion> champions = new List<Champion>(); // 합성 중 챔피언 저장 리스트
     public GameObject levelupEffectPrefab; // 레벨 업 이펙트 프리팹
-    public Animator synthesizerAnimator; // 합성기 애니메이터
-    public Transform synthesizerTransform; //합성기 위치
+    //public Animator synthesizerAnimator; // 합성기 애니메이터
+    //public Transform synthesizerTransform; //합성기 위치
 
-    public Button yourButton; // Unity Inspector에서 버튼 할당을 위한 변수
+    //public Button yourButton; // Unity Inspector에서 버튼 할당을 위한 변수
     // 다른 메서드 생략...
     void Start()
     {
@@ -73,22 +73,22 @@ public class ChampionCombination : MonoBehaviour
             Debug.LogWarning("GamePlayController 또는 Map이 설정되지 않았습니다.");
             return;
         }
-        if (synthesizerAnimator != null)
-        {
-            Debug.Log("애니 재생");
+        //if (synthesizerAnimator != null)
+        //{
+            //Debug.Log("애니 재생");
             // 애니메이션 재생
-            synthesizerAnimator.SetBool("isAnalyzing", true);
-        }
-        else
-        {
-            Debug.LogError("Animator를 찾을 수 없습니다.");
-        }
+            //synthesizerAnimator.SetBool("isAnalyzing", true);
+        //}
+        //else
+        //{
+            //Debug.LogError("Animator를 찾을 수 없습니다.");
+        //}
 
         // 챔피언을 저장할 리스트를 초기화합니다.
         ChampionController championController = championObject.GetComponent<ChampionController>();
         Champion champion = championController.champion;
         champions.Add(champion);
-        championObject.transform.position = synthesizerTransform.transform.position;
+        //championObject.transform.position = synthesizerTransform.transform.position;
         Debug.Log("Champions에" + champion + "추가");
         //gamePlayController.RemoveChampionFromArray(gamePlayController.dragStartTrigger.gridType, gamePlayController.dragStartTrigger.gridX, gamePlayController.dragStartTrigger.gridZ);
 
@@ -122,11 +122,11 @@ public class ChampionCombination : MonoBehaviour
                 Debug.Log($"조합식 {recipe}의 입력 챔피언들이 존재하는지: {inputsAvailable}");
             }
         }
-        if (synthesizerAnimator != null)
-        {
+        //if (synthesizerAnimator != null)
+        //{
             // 애니메이션 재생
-            synthesizerAnimator.SetBool("isAnalyzing", false);
-        }
+            //synthesizerAnimator.SetBool("isAnalyzing", false);
+        //}
     }
 
     // 모든 챔피언들을 체크해서 allChampions 리스트에 저장 후, allChampions에 조합에 필요한 모든 input 챔피언들이 존재하는지 확인하는 방식으로 수정
@@ -269,6 +269,7 @@ public class ChampionCombination : MonoBehaviour
                 ChampionController championController = gamePlayController.ownChampionInventoryArray[i].GetComponent<ChampionController>();
                 if (championController.champion == champion)
                     {
+                        championController.currentHealth = 0;
                         Destroy(gamePlayController.ownChampionInventoryArray[i]);
                         Debug.Log($"{champion.name} 파괴 완료");
                         return; // 파괴된 후에는 바로 반환하여 루프를 종료합니다.

@@ -533,7 +533,6 @@ public class ChampionController : MonoBehaviour
     /// </summary>
     private void DoAttack()
     {
-        //Debug.Log("공격실행");
         isAttacking = true;
 
         ///공격할 동안 에이전트 비활성화

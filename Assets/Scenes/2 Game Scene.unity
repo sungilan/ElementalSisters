@@ -7018,18 +7018,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2470496694693163555, guid: 31ff62ad4c6c65b40924caed5bbd909c,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.9976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470496694693163555, guid: 31ff62ad4c6c65b40924caed5bbd909c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.9976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470496694693163555, guid: 31ff62ad4c6c65b40924caed5bbd909c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.9976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470496694693163555, guid: 31ff62ad4c6c65b40924caed5bbd909c,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.603
+      value: -20.6
       objectReference: {fileID: 0}
     - target: {fileID: 2470496694693163555, guid: 31ff62ad4c6c65b40924caed5bbd909c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.523
+      value: 1.5068
       objectReference: {fileID: 0}
     - target: {fileID: 2470496694693163555, guid: 31ff62ad4c6c65b40924caed5bbd909c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.596
+      value: 22.742
       objectReference: {fileID: 0}
     - target: {fileID: 2470496694693163555, guid: 31ff62ad4c6c65b40924caed5bbd909c,
         type: 3}
@@ -28007,7 +28022,7 @@ MonoBehaviour:
   roundCount: 0
   currentChampionLimit: 3
   currentChampionCount: 0
-  currentGold: 1000
+  currentGold: 5
   currentExp: 0
   requiredExp: 0
   currentLevel: 1
@@ -28309,9 +28324,6 @@ MonoBehaviour:
     outputChampion: {fileID: 11400000, guid: a43762458a8fcc848bc9077d21d70bab, type: 2}
   levelupEffectPrefab: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa,
     type: 3}
-  synthesizerAnimator: {fileID: 0}
-  synthesizerTransform: {fileID: 0}
-  yourButton: {fileID: 0}
 --- !u!1 &935159469
 GameObject:
   m_ObjectHideFlags: 0

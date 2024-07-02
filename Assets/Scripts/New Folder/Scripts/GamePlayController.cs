@@ -38,7 +38,7 @@ public class GamePlayController : MonoBehaviour
     ///전투 단계가 지속될 수 있는 최대 시간
     public int CombatStageDuration = 60;
     ///매 라운드마다 얻을 수 있는 기본 골드 가치
-    public int baseGoldIncome = 5;
+    public int baseGoldIncome = 8;
     //라운드 카운트 숫자
     public int roundCount;
 
