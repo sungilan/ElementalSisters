@@ -125,8 +125,8 @@ private int GetRandomCostByPlayerLevel(int playerLevel)
 {
 
     // 해당 레벨의 확률 배열을 가져옴
-    int[] probabilities = new int[5];
-    for (int i = 0; i < 5; i++)
+    int[] probabilities = new int[5]; //길이가 5개인 배열 가져옴
+    for (int i = 0; i < 5; i++) //0 ~ 4까지 반복
     {
         probabilities[i] = levelCostProbability[playerLevel - 1, i];
     }
@@ -157,7 +157,7 @@ public List<Champion> GetChampionsByCost(int cost)
 {
     List<Champion> championsByCost = new List<Champion>();
 
-    foreach (var champion in gameData.championsArray)
+    foreach (var champion in gameData.championsArray) // 모든 챔피언을 순회하며 해당 cost와 일치하는 챔피언을 찾는다.
     {
         if (champion.cost == cost)
         {
@@ -175,9 +175,9 @@ public List<Champion> GetChampionsByCost(int cost)
 /// <returns>무작위로 선택된 챔피언</returns>
 public Champion GetRandomChampionByCost(int cost)
 {
-    List<Champion> championsByCost = GetChampionsByCost(cost);
-    int rand = Random.Range(0, championsByCost.Count);
-    return championsByCost[rand];
+    List<Champion> championsByCost = GetChampionsByCost(cost); // 특정 cost에 해당하는 챔피언 목록을 가져온다.
+    int rand = Random.Range(0, championsByCost.Count); // 챔피언 목록에서 무작위 인덱스를 선택.
+    return championsByCost[rand]; // 무작위로 선택된 챔피언을 반환한다.
 }
 
 /// <summary>
@@ -187,7 +187,7 @@ public Champion GetRandomChampionByCost(int cost)
 /// <returns>무작위로 선택된 챔피언</returns>
 public Champion GetRandomChampionByPlayerLevel(int playerLevel)
 {
-    int cost = GetRandomCostByPlayerLevel(playerLevel);
-    return GetRandomChampionByCost(cost);
+    int cost = GetRandomCostByPlayerLevel(playerLevel); // 플레이어 레벨에 따라 무작위 cost를 결정.
+    return GetRandomChampionByCost(cost); // 결정된 cost에 해당하는 무작위 챔피언을 반환.
 }
 }

@@ -70,7 +70,7 @@ public class LoadingScreenBarSystem : MonoBehaviour {
             bar.transform.localScale = new Vector3(async.progress,0.9f,1);
 
             if (loadingText != null)
-                loadingText.text = "%" + (100 * bar.transform.localScale.x).ToString("####");
+                loadingText.text = (100 * bar.transform.localScale.x).ToString("####") + "%";
 
             if (async.progress == 0.9f)
             {

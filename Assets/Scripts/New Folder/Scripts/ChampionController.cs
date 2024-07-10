@@ -753,7 +753,8 @@ public class ChampionController : MonoBehaviour
 
     public void UseSkill()
     {
-        GameObject skillEffect = Instantiate(champion.skillEffectPrefab, this.transform.position, this.transform.rotation);
+        GameObject skillEffect = champion.skillEffectPrefab;
+        Instantiate(skillEffect, this.transform.position, skillEffect.transform.rotation);
         Destroy(skillEffect, 3f);
         championAnimation.OnUseskill();
     }
