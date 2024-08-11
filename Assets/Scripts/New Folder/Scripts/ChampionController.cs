@@ -629,8 +629,6 @@ public class ChampionController : MonoBehaviour
                 projectile.transform.position = projectileStart.transform.position; //발사체의 위치를 projectileStart의 위치로 설정
 
                 projectile.GetComponent<Projectile>().Init(target);
-
-
             }
         }
     }
@@ -753,9 +751,12 @@ public class ChampionController : MonoBehaviour
 
     public void UseSkill()
     {
-        GameObject skillEffect = champion.skillEffectPrefab;
-        Instantiate(skillEffect, this.transform.position, skillEffect.transform.rotation);
-        Destroy(skillEffect, 3f);
-        championAnimation.OnUseskill();
+        if(champion.skillEffectPrefab != null)
+        {
+            GameObject skillEffect = champion.skillEffectPrefab;
+            Instantiate(skillEffect, this.transform.position, skillEffect.transform.rotation);
+            Destroy(skillEffect, 3f);
+            championAnimation.OnUseskill();
+        }
     }
 }

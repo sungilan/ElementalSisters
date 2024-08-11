@@ -694,7 +694,7 @@ MonoBehaviour:
       m_Calls: []
   championCombination: {fileID: 0}
   panel: {fileID: 6039889757173053514}
-  comButton: {fileID: 0}
+  comButton: {fileID: 4863245390408297240}
 --- !u!65 &2879843266715820537
 BoxCollider:
   m_ObjectHideFlags: 0

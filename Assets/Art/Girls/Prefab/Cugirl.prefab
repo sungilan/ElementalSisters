@@ -204,7 +204,9 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+  championCombination: {fileID: 0}
   panel: {fileID: 1654600081639687007}
+  comButton: {fileID: 5670825367607136614}
 --- !u!65 &3753348310725365559
 BoxCollider:
   m_ObjectHideFlags: 0

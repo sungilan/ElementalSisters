@@ -24863,7 +24863,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3bf6189e2f9d1e34ca9f13724e15444a, type: 3}
   - soundName: "\uC720\uB2DB \uC870\uD569"
     clip: {fileID: 8300000, guid: 1a2b8a62e0852004c95060fb8d717dba, type: 3}
-  - soundName: "\uC720\uB2DB \uD310\uB9E4"
+  - soundName: "\uC720\uB2DB \uD310\uB9E4\uC74C"
     clip: {fileID: 8300000, guid: 6be5445805c6b08408a49cfee085cd21, type: 3}
   - soundName: "\uB9AC\uB864"
     clip: {fileID: 8300000, guid: e6d6e3fae844976429f681549076d94a, type: 3}

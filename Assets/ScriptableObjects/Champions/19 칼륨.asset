@@ -28,5 +28,4 @@ MonoBehaviour:
   attackEffectPrefab: {fileID: 919132149155446097, guid: 28c9a27e6fda7234e9d9afa2699c7ef0,
     type: 3}
   attackEffectDuration: 1
-  skillEffectPrefab: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
-    type: 3}
+  skillEffectPrefab: {fileID: 0}

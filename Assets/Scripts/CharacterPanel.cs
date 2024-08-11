@@ -13,6 +13,7 @@ public class CharacterPanel : XRBaseInteractable
     UIController uiController;
     public GameObject panel;
     public Button comButton;
+
     private void Start() 
     {
         championCombination = FindObjectOfType<ChampionCombination>();
@@ -20,12 +21,15 @@ public class CharacterPanel : XRBaseInteractable
         gamePlayController = FindObjectOfType<GamePlayController>();
         uiController = FindObjectOfType<UIController>();
 
-        if(comButton != null) 
+        if(comButton != null)
+        {
             comButton.onClick.AddListener(Test);
+        }
     }
 
     private void Test()
     {
+        Debug.Log("조합");
         championCombination.CreateNewChampionAuto();
     }
 

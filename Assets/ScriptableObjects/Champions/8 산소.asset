@@ -28,5 +28,4 @@ MonoBehaviour:
   cardMaterial: {fileID: 2100000, guid: 2c990491b1be79146836dc60972d329a, type: 2}
   attackEffectPrefab: {fileID: 0}
   attackEffectDuration: 1
-  skillEffectPrefab: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
-    type: 3}
+  skillEffectPrefab: {fileID: 0}
