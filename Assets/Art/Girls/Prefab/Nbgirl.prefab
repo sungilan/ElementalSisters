@@ -401,8 +401,12 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
-  championCombination: {fileID: 0}
+  inputActionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
+  rayInteractor: {fileID: 0}
   panel: {fileID: 272239190276498289}
+  sellButton: {fileID: 0}
+  upButton: {fileID: 0}
   comButton: {fileID: 9129877575967617120}
 --- !u!65 &1898027660795052718
 BoxCollider:

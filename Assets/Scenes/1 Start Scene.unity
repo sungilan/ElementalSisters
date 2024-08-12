@@ -2367,10 +2367,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3bf6189e2f9d1e34ca9f13724e15444a, type: 3}
   - soundName: "\uC720\uB2DB \uC870\uD569"
     clip: {fileID: 8300000, guid: 1a2b8a62e0852004c95060fb8d717dba, type: 3}
-  - soundName: "\uC720\uB2DB \uD310\uB9E4"
+  - soundName: "\uC720\uB2DB \uD310\uB9E4\uC74C"
     clip: {fileID: 8300000, guid: 6be5445805c6b08408a49cfee085cd21, type: 3}
   - soundName: "\uB9AC\uB864"
     clip: {fileID: 8300000, guid: e6d6e3fae844976429f681549076d94a, type: 3}
+  - soundName: "\uD2B9\uC131 \uCE74\uB4DC \uC120\uD0DD"
+    clip: {fileID: 8300000, guid: effee40aac5eee748a46f73dc6266392, type: 3}
   bgmPlayer: {fileID: 838107455}
   sfxPlayer:
   - {fileID: 838107461}
@@ -6534,7 +6536,7 @@ MonoBehaviour:
   m_TrackingStateInput:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Tracking State Input
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: ab2e5705-8e6a-4a1e-8dca-1bfa467340a3

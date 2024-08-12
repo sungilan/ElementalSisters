@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.PlayerLoop;
 
 public enum GameStage { Preparation, Combat, Loss};
 
@@ -48,10 +50,10 @@ public class GamePlayController : MonoBehaviour
     public int currentChampionCount = 0; //현재 챔피언 수
     public int currentGold = 5; //현재 골드
 
-    public int currentExp;
-    public int requiredExp;
+    public int currentExp; //현재 경험치
+    public int requiredExp; //레벨업 요구 경험치
     [HideInInspector]
-    public int currentLevel = 1;
+    public int currentLevel = 1; //현재 레벨
     [HideInInspector]
     public int maxHP = 100; //최대 플레이어 체력
     [HideInInspector]
@@ -130,14 +132,15 @@ public class GamePlayController : MonoBehaviour
         }
 
         LevelUp();
+        if (draggedChampion != null)
+        {
+            UpdateDraggedObjectPosition();
+        }
     }
     public void ChangePlayerPos()
     {
         playerPos.transform.position = playerPreparationPos1.transform.position;
     }
-
-
-
 
     /// <summary>
     /// 상점에서 챔피언을 구매하여 인벤토리에 추가합니다.
@@ -189,8 +192,8 @@ public class GamePlayController : MonoBehaviour
 
        
         //preparation stage에서만 업그레이드 가능
-        if(currentGameStage == GameStage.Preparation) //현재 스테이지가 준비 스테이지일 때
-            TryUpgradeChampion(champion); //업그레이드가 가능하면 업그레이드 실행
+        //if(currentGameStage == GameStage.Preparation) //현재 스테이지가 준비 스테이지일 때
+            //TryUpgradeChampion(champion); //업그레이드가 가능하면 업그레이드 실행
 
 
         //골드 지출
@@ -208,7 +211,7 @@ public class GamePlayController : MonoBehaviour
     /// 챔피언을 업그레이드할 수 있는지 확인하고, 업그레이드합니다.
     /// </summary>
     /// <param name="champion">업그레이드할 챔피언입니다.</param>
-    private void TryUpgradeChampion(Champion champion)
+    public void TryUpgradeChampion(Champion champion)
     {
         // 업그레이드 가능한 챔피언을 저장할 리스트를 초기화합니다.
         List<ChampionController> championList_lvl_1 = new List<ChampionController>();
@@ -288,14 +291,23 @@ public class GamePlayController : MonoBehaviour
                 Destroy(championList_lvl_2[1].gameObject);
             }
         }
-
-
+        else
+        {
+            StartCoroutine(ShowMessage());
+        }
         // 현재 챔피언 수를 업데이트합니다.
         currentChampionCount = GetChampionCountOnHexGrid();
 
         // UI를 업데이트합니다.
         uIController.UpdateUI();
-
+    }
+    private IEnumerator ShowMessage()
+    {
+        uIController.sellUIPrefab.SetActive(true);
+        uIController.sellUIPrefab.transform.forward = Camera.main.transform.forward;
+        uIController.sellText.text = "충분한 유닛이 없어 진급이 불가능합니다.";
+        yield return new WaitForSeconds(1f);
+        uIController.sellUIPrefab.SetActive(false);
     }
 
     private GameObject draggedChampion = null;
@@ -714,13 +726,15 @@ public class GamePlayController : MonoBehaviour
 
                 }
             }
-
+            // 모든 스페셜 카드를 삭제
+            if (createSpecialCard != null)
+            {
+                createSpecialCard.DestroyAllSpecialCards();
+            }
 
             //check if we start with 0 champions
             if (IsAllChampionDead())
                 EndRound();
-           
-
         }
         else if (currentGameStage == GameStage.Combat) // 현재스테이지가 전투단계이면
         {
@@ -741,10 +755,10 @@ public class GamePlayController : MonoBehaviour
             ResetChampions();
 
             //go through all champion infos
-            for (int i = 0; i < gameData.championsArray.Length; i++)
-            {
-                TryUpgradeChampion(gameData.championsArray[i]);
-            }
+            //for (int i = 0; i < gameData.championsArray.Length; i++)
+            //{
+                //TryUpgradeChampion(gameData.championsArray[i]);
+            //}
 
 
             //add gold
@@ -761,7 +775,6 @@ public class GamePlayController : MonoBehaviour
             {
                 currentGameStage = GameStage.Loss;
                 uIController.ShowLossScreen();
-             
             }
             
         }
@@ -904,6 +917,10 @@ public class GamePlayController : MonoBehaviour
 
         //스탯을 리셋합니다.
         currentHP = 100;
+        currentExp = 0;
+        requiredExp = 2;
+        roundCount = 1;
+        currentLevel = 1;
         currentGold = 5;
         currentGameStage = GameStage.Preparation;
         currentChampionLimit = 3;
@@ -916,10 +933,7 @@ public class GamePlayController : MonoBehaviour
 
         //show hide ui
         uIController.ShowGameScreen();
-   
-
     }
-
 
     /// <summary>
     /// 라운드를 끝냅니다.
@@ -978,20 +992,20 @@ public class GamePlayController : MonoBehaviour
         return false;
 
     }
-    /// <summary>
-    /// 조합법 버튼을 누를 때마다 조합법이 활성/비활성화됩니다.
-    /// </summary>
-    public void RecipeButton()
+
+    void UpdateDraggedObjectPosition()
     {
-        if (uIController.recipeUIPrefab != null)
+        if (draggedChampion != null)
         {
-            if (uIController.recipeUIPrefab.activeSelf)
+            XRRayInteractor rayInteractor = FindObjectOfType<XRRayInteractor>();
+            if (rayInteractor != null)
             {
-                uIController.recipeUIPrefab.SetActive(false);
-            }
-            else
-            {
-                uIController.recipeUIPrefab.SetActive(true);
+                RaycastHit hit;
+                if (rayInteractor.TryGetCurrent3DRaycastHit(out hit))
+                {
+                    // 드래그된 챔피언의 위치를 히트 위치로 업데이트합니다.
+                    draggedChampion.transform.position = hit.point;
+                }
             }
         }
     }

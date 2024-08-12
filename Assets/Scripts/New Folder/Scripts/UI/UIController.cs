@@ -5,6 +5,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 /// <summary>
 /// Updates and controls UI elements
@@ -13,6 +14,7 @@ public class UIController : MonoBehaviour
 {
     public ChampionShop championShop;
     public GamePlayController gamePlayController;
+    public ChampionCombination championCombination;
 
     public GameObject[] championsFrameArray;
     public GameObject[] specialCardArray;
@@ -28,6 +30,8 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI sellText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI currentExpText;
+    public TextMeshProUGUI combiText;
+
     [SerializeField] private Image Hpimage;
     [SerializeField] private Image BackHpimage;
     [SerializeField] private Image Expimage;
@@ -41,14 +45,15 @@ public class UIController : MonoBehaviour
     public GameObject gold;
     public GameObject bonusContainer;
     public GameObject bonusUIPrefab;
-    public GameObject recipeUIPrefab;
     public GameObject sellUIPrefab;
+    public GameObject combiUIPrefab;
 
     public Slider progressBar;
 
     private void Start()
     {
         Hpimage.fillAmount = (float)gamePlayController.currentHP / (float)gamePlayController.maxHP;
+        championCombination = GameObject.Find("Scripts").GetComponent<ChampionCombination>();
     }
     private void HandleHp()
     {
@@ -68,7 +73,7 @@ public class UIController : MonoBehaviour
         Expimage.fillAmount = Mathf.Lerp(Expimage.fillAmount, (float)gamePlayController.currentExp / (float)gamePlayController.requiredExp, Time.deltaTime * 5f);
     }
 
-    
+
 
     public void StartButtonClicked()
     {
@@ -116,13 +121,7 @@ public class UIController : MonoBehaviour
     {
         gamePlayController.RestartGame();
     }
-    /// <summary>
-    /// UI에서 조합법 버튼을 클릭하면 호출됩니다.
-    /// </summary>
-    public void Recipe_Click()
-    {
-        gamePlayController.RecipeButton();
-    }
+
     public void Lock_Click()
     {
         SoundManager.instance.PlaySE("리롤");
@@ -170,7 +169,7 @@ public class UIController : MonoBehaviour
         dictionaryPanel.SetActive(!dictionaryPanel.activeSelf);
     }
 
-    
+
 
     /// <summary>
     /// displays champion info to given index on UI
@@ -194,7 +193,7 @@ public class UIController : MonoBehaviour
 
         //assign texts from champion info to unit frames
         MeshRenderer renderer = championUI.GetComponent<MeshRenderer>();
-        if (renderer != null) 
+        if (renderer != null)
         {
             renderer.material = champion.cardMaterial;
         }
@@ -239,12 +238,10 @@ public class UIController : MonoBehaviour
         currentExpText.text = gamePlayController.currentExp.ToString() + " / " + gamePlayController.requiredExp.ToString();
         hpText.text = gamePlayController.currentHP.ToString() + " / " + gamePlayController.maxHP.ToString();
 
-
         //hide bonusus UI
         foreach (GameObject go in bonusPanels) {
             go.SetActive(false);
         }
-
 
         //if not null
         if (gamePlayController.championTypeCount != null)
@@ -259,16 +256,16 @@ public class UIController : MonoBehaviour
                 bonusUI.transform.Find("icon").GetComponent<Image>().sprite = m.Key.icon;
                 bonusUI.transform.Find("name").GetComponent<TextMeshProUGUI>().text = m.Key.displayName;
                 bonusUI.transform.Find("count").GetComponent<TextMeshProUGUI>().text = m.Value.ToString() + " / " + m.Key.championBonus.championCount.ToString();
-                
+
                 // Change the color of the bonus panel when it is active
-                if(m.Value == m.Key.championBonus.championCount)
+                if (m.Value == m.Key.championBonus.championCount)
                 {
-                   bonusUI.GetComponent<Image>().color = new Color(0.803f, 0.498f, 0.196f);
+                    bonusUI.GetComponent<Image>().color = new Color(0.803f, 0.498f, 0.196f);
                 }
-                
+
                 bonusUI.SetActive(true);
 
-                i++;   
+                i++;
             }
         }
     }
@@ -319,10 +316,9 @@ public class UIController : MonoBehaviour
     {
         SetTimerTextActive(true);
         shop.SetActive(true);
-        gold.SetActive(true);
-
-
-        restartButton.SetActive(false);
+        //gold.SetActive(true);
+        //restartButton.SetActive(false);
+        gameOverPanel.SetActive(false);
     }
 
     private void Update()
@@ -341,6 +337,24 @@ public class UIController : MonoBehaviour
                 // 타이머가 진행되는 비율을 계산하여 프로그레스 바에 반영
                 float progress = gamePlayController.timer / gamePlayController.CombatStageDuration; // 준비단계의 진행률 계산
                 progressBar.value = progress; // Slider의 값을 변경하여 프로그레스 바 표시
+            }
+        }
+    }
+
+    public void Combination()
+    {
+        combiUIPrefab.SetActive(true);
+        combiUIPrefab.transform.forward = Camera.main.transform.forward;
+        combiText.text = ""; // 기존 텍스트 초기화
+
+        for (int i = 0; i < championCombination.combinationRecipes.Count; i++)
+        {
+            combiText.text += championCombination.combinationRecipes[i].ToString();
+
+            // 마지막 항목이 아니면 줄 바꿈 추가
+            if (i < championCombination.combinationRecipes.Count - 1)
+            {
+                combiText.text += "\n";
             }
         }
     }

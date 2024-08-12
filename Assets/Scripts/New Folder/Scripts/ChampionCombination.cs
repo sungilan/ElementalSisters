@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,11 @@ public class ChampionCombination : MonoBehaviour
     {
         public List<Champion> inputChampions; // 조합에 필요한 입력 챔피언들
         public Champion outputChampion; // 조합 결과로 생성되는 새로운 챔피언
+        public override string ToString()
+        {
+            string inputNames = string.Join(" + ", inputChampions.ConvertAll(c => c.name));
+            return $" {inputNames} -> {outputChampion.name}";
+        }
     }
 
     private Map map; // 맵
@@ -19,6 +25,7 @@ public class ChampionCombination : MonoBehaviour
     public List<CombinationRecipe> combinationRecipes; // 조합식 리스트
     private List<Champion> champions = new List<Champion>(); // 합성 중 챔피언 저장 리스트
     public GameObject levelupEffectPrefab; // 레벨 업 이펙트 프리팹
+    private UIController uiController;
     //public Animator synthesizerAnimator; // 합성기 애니메이터
     //public Transform synthesizerTransform; //합성기 위치
 
@@ -30,6 +37,7 @@ public class ChampionCombination : MonoBehaviour
         //yourButton.onClick.AddListener(TaskOnClick);
         map = GameObject.Find("Scripts").GetComponent<Map>();
         gamePlayController = GameObject.Find("Scripts").GetComponent<GamePlayController>();
+        uiController = GameObject.Find("Scripts").GetComponent<UIController>();
     }
     // 버튼을 클릭할 때 호출될 함수
     void TaskOnClick()
@@ -165,15 +173,17 @@ public class ChampionCombination : MonoBehaviour
                         Debug.Log("allChampions에" + champion + "추가");
                     }
             }
-        } 
+        }
 
+        bool recipeFound = false;
         // allChampions 리스트에 저장된 챔피언들을 이용하여 조합에 필요한 모든 입력 챔피언들이 존재하는지 확인합니다.
         foreach (CombinationRecipe recipe in combinationRecipes)
         {
             bool inputsAvailable = AllInputsAvailable(allChampions, recipe);
             Debug.Log($"조합식 {recipe}의 입력 챔피언들이 존재하는지: {inputsAvailable}");
-            if (AllInputsAvailable(allChampions, recipe))
+            if (inputsAvailable)
             {
+                recipeFound = true;
                 // 모든 입력이 가능하면 새로운 챔피언을 생성합니다.
                 bool success = StoreSynthesizedChampion(recipe.outputChampion, recipe.inputChampions);
                 if (success)
@@ -195,6 +205,21 @@ public class ChampionCombination : MonoBehaviour
                 }
             }
         }
+        // 조합 가능한 레시피가 없을 경우 메시지를 출력합니다.
+        if (!recipeFound)
+        {
+            StartCoroutine(ShowNoRecipeMessage());
+        }
+    }
+
+    // 조합에 필요한 챔피언이 없을 경우 메시지를 출력하는 메서드
+    private IEnumerator ShowNoRecipeMessage()
+    {
+        uiController.sellUIPrefab.SetActive(true);
+        uiController.sellUIPrefab.transform.forward = Camera.main.transform.forward;
+        uiController.sellText.text = "조합에 필요한 챔피언이 없습니다.";
+        yield return new WaitForSeconds(2f);
+        uiController.sellUIPrefab.SetActive(false);
     }
 
 

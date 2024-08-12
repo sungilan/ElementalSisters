@@ -24,15 +24,6 @@ public class CreateSpecialCard : MonoBehaviour
         //SetSpecialCard();
     }
 
-    /// Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    /// <summary>
-    /// 새로운 무작위 챔피언으로 상점을 새로 고칩니다.
-    /// </summary>
     public void SetSpecialCard()
     {
          SoundManager.instance.PlaySE("특성 카드 선택");
@@ -62,13 +53,7 @@ public class CreateSpecialCard : MonoBehaviour
             // UI에 챔피언 로드
             uIController.LoadSpecialCard(specialCard, i);
           
-            // 상점 아이템 표시
-            //uIController.ShowShopItems();
         }
-
-        // 골드 차감
-        //if (isFree == false)
-            //gamePlayController.currentGold -= 2;
 
         // UI 업데이트
         uIController.UpdateUI();
